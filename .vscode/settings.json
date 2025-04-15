@@ -1,5 +1,0 @@
-{
-  "editor.formatOnSave": true, //儲存檔案時自動格式化（會觸發 Prettier 排版）
-  "editor.defaultFormatter": "esbenp.prettier-vscode" //指定用 Prettier 套件來當作預設的 formatter（避免 VS Code 用別的）
-}
-/* 搭配 Prettier - Code formatter套件  儲存自動格式化 */
