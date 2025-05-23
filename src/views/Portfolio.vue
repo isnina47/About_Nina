@@ -12,6 +12,13 @@
 
   const works = [
     {
+      title: 'Todo List',
+      description: '使用 React 18 搭配 Tailwind CSS 實作待辦清單應用。',
+      image: './images/todolist.png',
+      link: 'https://isnina47.github.io/todo-list-nina/',
+      type: '個人'
+    },
+    {
       title: 'About Nina',
       description: '使用 Vue + Tailwind 打造個人簡介網站。',
       image: './images/aboutNina.png',

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SPA fallback</title>
+    <script>
+      // 將當前網址記錄下來
+      const path = location.pathname.replace(/\/About_Nina/, '')
+      sessionStorage.redirect = path
+      // 導回 index.html
+      location.replace('/About_Nina/')
+    </script>
+  </head>
+  <body></body>
+</html>
+<script>
+  const redirect = sessionStorage.redirect
+  if (redirect) {
+    sessionStorage.removeItem('redirect')
+    history.replaceState(null, '', redirect)
+  }
+</script>
