@@ -1,16 +1,17 @@
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
 
-  const showScrollBtn = ref(false)
-  const visible = ref(false)
+  const showScrollBtn = ref(false) // 控制按鈕是否顯示在畫面中
+  const visible = ref(false) // 控制按鈕是否進行動畫呈現，搭配 fadein/fadeout 等
 
   const handleScroll = () => {
     if (window.scrollY > 200) {
-      visible.value = true
+      // 網頁捲動超過200px 就顯示返回頂部按鈕
+      visible.value = true // 啟動 出場動畫
       showScrollBtn.value = true
     } else {
       showScrollBtn.value = false
-      // 動畫結束再隱藏
+      // 讓動畫完整結束後再隱藏元件
       setTimeout(() => {
         visible.value = false
       }, 200) // 對應 animate__faster 時間
@@ -20,10 +21,11 @@
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-
+  // 元件載入後綁定 scroll 事件，持續監聽使用者是否向下捲動
   onMounted(() => {
     window.addEventListener('scroll', handleScroll)
   })
+  // 元件卸載時，解除事件綁定，避免記憶體洩漏或不必要的觸發
   onUnmounted(() => {
     window.removeEventListener('scroll', handleScroll)
   })
@@ -92,12 +94,14 @@
       </router-link>
     </div>
 
-    <!-- 🔼 回到頂部按鈕（滑入滑出） -->
+    <!--  回到頂部按鈕（滑入滑出） -->
+    <!-- 只有 visible 為 true 時，才會渲染整個按鈕區塊 -->
     <div
       v-if="visible"
       class="fixed bottom-6 right-6 animate__animated animate__faster"
       :class="showScrollBtn ? 'animate__slideInRight' : 'animate__slideOutRight'"
     >
+      <!-- 根據 showScrollBtn 的狀態切換動畫 -->
       <button
         @click="scrollToTop"
         class="w-12 h-12 flex items-center justify-center rounded-full border border-btnborder text-btnText bg-btn hover:scale-90 transition duration-300"

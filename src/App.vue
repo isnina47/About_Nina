@@ -1,6 +1,7 @@
 <template>
   <NavBar />
 
+  <!-- 預留空間給固定高度的 NavBar -->
   <main class="pt-16">
     <router-view />
   </main>

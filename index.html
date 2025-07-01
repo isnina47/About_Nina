@@ -17,7 +17,10 @@
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
+
 <script>
+  // 此段用於支援404.html  暫存原始目標頁面至 sessionStorage.redirect
+  // 將頁面導回 index.html
   const redirect = sessionStorage.redirect
   if (redirect) {
     sessionStorage.removeItem('redirect')

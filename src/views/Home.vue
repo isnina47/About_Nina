@@ -1,13 +1,14 @@
 <template>
+  <!-- min-h-screen 讓區塊的最小高度等於整個螢幕高度（100vh） -->
   <section
     class="min-h-screen overflow-hidden font-serif px-8 py-12 animate__animated animate__fadeIn animate__fast"
   >
     <div class="max-w-6xl mx-auto">
-      <!-- 頭像 + 自我介紹 + 聯絡方式（左右置中排列） -->
       <div
         class="mb-12 flex flex-col lg:flex-row items-center justify-center gap-10 animate__animated animate__fadeInDown animate__fast"
       >
-        <!-- 頭像左側 -->
+        <!-- 上方頭像 -->
+        <!-- flex-shrink 保持頭像固定大小，不因螢幕寬度壓縮變形 -->
         <div class="flex-shrink-0">
           <img
             src="/images/nina.jpg"
@@ -16,7 +17,8 @@
           />
         </div>
 
-        <!-- 自我介紹 + 聯絡方式右側 -->
+        <!-- 簡介 -->
+        <!-- 父層是 flex 子元素套用 flex-grow 會在剩餘空間自動等比例放大 -->
         <div class="flex-grow max-w-xl">
           <h1 class="text-2xl font-bold text-title mb-2">嗨，我是 Nina 余嘉婕 👋</h1>
           <p class="text-lg mt-4">
@@ -27,8 +29,10 @@
       </div>
 
       <!-- 學歷 & 技能 + 工作經驗 -->
+      <!-- 1024px (桌機)為 2 欄 ) -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <!-- 左側：學歷 + 技能 -->
+        <!-- space-y-6 從第2個元素開始，每元素之間自動加入 margin-top 24px -->
         <div
           class="space-y-6 animate__animated animate__fadeInLeft animate__fast animate__delay-1s"
         >
@@ -45,16 +49,17 @@
           <div>
             <h2 class="text-2xl font-bold text-title mb-2">技能</h2>
             <div class="space-y-6">
-              <!-- 🔹 前端技術 -->
+              <!--  前端技術 -->
               <div>
                 <h3 class="text-md mb-1 font-semibold text-title">前端技術</h3>
+                <!-- list-disc 為 • 圓點符號 -->
                 <ul class="list-disc list-inside space-y-1">
                   <li>HTML5 / CSS3 / SASS / RWD</li>
                   <li>JavaScript (ES6+) / jQuery</li>
                   <li>Vue 3 / Vue Router</li>
                 </ul>
               </div>
-              <!-- 🔹 版本控制與協作工具 -->
+              <!--  版本控制與協作工具 -->
               <div>
                 <h3 class="text-md mb-2 font-semibold text-title">版本控制 / 設計工具</h3>
                 <ul class="list-disc list-inside space-y-1">
@@ -110,7 +115,7 @@
             </div>
           </div>
 
-          <!-- ✅ 快捷按鈕獨立動畫，延後進場 -->
+          <!--  快捷按鈕獨立動畫，延後進場 -->
           <div
             class="mt-10 flex gap-4 animate__animated animate__fadeInUp animate__fast animate__delay-3s"
           >

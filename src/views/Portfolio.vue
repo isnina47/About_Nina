@@ -1,13 +1,13 @@
 <script setup>
   import { ref, computed, onMounted } from 'vue'
 
-  const activeCategory = ref('全部')
+  const activeCategory = ref('全部') // 綁定按鈕類別 預設先顯示全部作品
   const showAnimation = ref(true)
 
   onMounted(() => {
     setTimeout(() => {
       showAnimation.value = false
-    }, 2000) // 更快速度的動畫後關閉動畫狀態
+    }, 2000) // 元件掛載後，2秒後將動畫設為 false，用於觸發一次性動畫
   })
 
   const works = [
@@ -58,6 +58,7 @@
     </h1>
 
     <!-- 分類按鈕 -->
+    <!-- flex-wrap自動換行 -->
     <div
       class="flex justify-center gap-4 mb-12 flex-wrap text-sm animate__animated animate__fadeInUp animate__fast"
     >
@@ -74,6 +75,7 @@
       >
         {{ cat }}
       </button>
+      <!-- 使用條件 class : 點選變色 -->
     </div>
 
     <!-- 作品卡片 -->
@@ -84,7 +86,7 @@
         class="bg-white border rounded-xl overflow-hidden shadow transition-transform duration-300 hover:scale-105 relative flex flex-col h-full"
         :class="[showAnimation ? 'animate__animated animate__fadeInUp animate__fast' : '']"
       >
-        <!-- 圖片區塊 -->
+        <!-- 圖片區塊 固定高度並填滿比例 -->
         <img :src="work.image" :alt="work.title" class="w-full h-48 object-cover" />
 
         <!-- 內容區塊 -->
@@ -102,6 +104,7 @@
           </a>
         </div>
       </div>
+      <!-- target="_blank" 點擊開分頁 -->
     </div>
 
     <!-- 🏠 返回首頁 -->
