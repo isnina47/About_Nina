@@ -1,15 +1,19 @@
 <template>
   <form @submit.prevent="handleSubmit" class="mb-6 space-y-4">
-    <input v-model="name" placeholder="暱稱" class="w-full border px-3 py-2 rounded" />
+    <input
+      v-model="name"
+      placeholder="暱稱"
+      class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-200"
+    />
     <textarea
       v-model="content"
-      placeholder="留言內容"
+      placeholder="想說的話"
       rows="3"
-      class="w-full border px-3 py-2 rounded"
+      class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-200"
     ></textarea>
     <button
       type="submit"
-      class="px-4 py-2 bg-btn border border-btnborder text-btnText rounded hover:bg-btnHover"
+      class="px-4 py-2 bg-btn border border-btnborder text-btnText rounded hover:bg-btnHover transition"
     >
       送出留言
     </button>

@@ -132,8 +132,8 @@
               查看作品集
             </router-link>
           </div>
-          <MessageBoard />
         </div>
+        <MessageBoard />
       </div>
     </div>
   </section>

@@ -1,8 +1,15 @@
 <template>
-  <section class="mt-12 px-4">
-    <h2 class="text-2xl font bold mb-4 text-center">💬 留言給 Nina</h2>
+  <section class="mt-12 animate__animated animate__fadeIn animate__fast animate__delay-4s">
+    <h2 class="text-2xl font-bold mb-4">💬 留言給 Nina</h2>
+    <!-- 留言表單 -->
     <MessageForm @submit-message="addMessage" />
-    <MessageList :messages="messages" />
+
+    <!-- 留言清單 -->
+    <div v-if="messages.length" class="mt-8 space-y-6">
+      <MessageList :messages="messages" />
+    </div>
+
+    <div v-else class="mt-4 text-textLight text-sm">目前尚無留言，歡迎留言和我互動！</div>
   </section>
 </template>
 
