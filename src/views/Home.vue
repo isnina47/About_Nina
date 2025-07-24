@@ -132,8 +132,14 @@
               查看作品集
             </router-link>
           </div>
+          <MessageBoard />
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+  // 匯入留言板
+  import MessageBoard from '../components/message-board/MessageBoard.vue'
+</script>

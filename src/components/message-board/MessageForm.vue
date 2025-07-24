@@ -7,7 +7,12 @@
       rows="3"
       class="w-full border px-3 py-2 rounded"
     ></textarea>
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">送出留言</button>
+    <button
+      type="submit"
+      class="px-4 py-2 bg-btn border border-btnborder text-btnText rounded hover:bg-btnHover"
+    >
+      送出留言
+    </button>
   </form>
 </template>
 
