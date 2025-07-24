@@ -54,36 +54,57 @@
 
     <!-- 👤 關於我 -->
     <div class="animate__animated animate__fadeInUp animate__fast animate__delay-1s">
-      <h1 class="text-2xl font-bold mb-4 border-b pb-2 text-title">關於我</h1>
+      <h1 class="text-2xl font-bold mb-4 border-b pb-2 text-title">關於我｜About Me</h1>
       <p class="mb-10 leading-relaxed text-md text-justify lg:text-left">
         您好，我是 Nina
-        余嘉婕，畢業於文藻外語大學。個性細心，擅長規劃與協作，具備高度責任感與良好溝通能力，能快速適應並完成各項任務。
+        余嘉婕，畢業於文藻外語大學。個性細心，擅長規劃與協作，具備良好溝通能力與責任感，能快速適應並完成各項任務。
       </p>
     </div>
 
     <!-- 💼 轉職動機 -->
     <div class="animate__animated animate__fadeInUp animate__fast animate__delay-2s">
-      <h1 class="text-2xl font-bold mb-4 border-b pb-2 text-title">轉職動機</h1>
+      <h1 class="text-2xl font-bold mb-4 border-b pb-2 text-title">
+        轉職動機｜Career Transition Motivation
+      </h1>
       <p class="mb-10 leading-relaxed text-md text-justify lg:text-left">
-        從事補教與行政工作期間，我發現自己對「創造與建構」更有熱情，希望能投入一個可以持續學習、累積專業知識並創造實際價值的領域。因此，我選擇轉職成為前端工程師，結合設計與技術，打造實用又美觀的網站體驗。
+        過去從事補教與行政工作期間，雖然穩定但缺乏挑戰與成就感。希望投入一個累積專業、持續成長並產出具體成果的領域，因此選擇轉職為前端工程師。
+        前端開發結合設計與邏輯，能實際看見成果並優化使用者體驗，讓我找回對工作的熱情與目標。
+        我期望在這條路上不斷精進，發展專業技能並創造實質價值。
       </p>
     </div>
 
     <!-- 🧠 技能與專案 -->
     <div class="animate__animated animate__fadeInUp animate__fast animate__delay-3s">
-      <h1 class="text-2xl font-bold mb-4 border-b pb-2 text-title">技能與專案經驗</h1>
-      <p class="mb-10 leading-relaxed text-md text-justify lg:text-left">
-        我在緯育 TibaMe 養成班中，系統性地學習 HTML、CSS、JavaScript 及 Vue.js
-        等技術。並透過個人與團隊專案實作，建立前端開發與協作經驗，這段密集學習的過程雖然充滿挑戰，但當我看到自己撰寫的程式成功運作、設計的畫面完美呈現在網頁上時，那份成就感更加堅定了我的轉職決心。
+      <h1 class="text-2xl font-bold mb-4 border-b pb-2 text-title">
+        技能與專案經驗｜Skills & Projects
+      </h1>
+      <p class="mb-4 leading-relaxed text-md text-justify lg:text-left">
+        我在緯育 TibaMe
+        前端養成班接受系統性訓練，著重於前端切版、畫面設計與互動開發，累積以下技術與實作能力：
       </p>
+      <ul class="list-disc list-inside space-y-1 mb-10">
+        <li>前端技術：HTML5、CSS3、JavaScript（ES6+）、Vue.js、Vue Router、Pinia</li>
+        <li>版型與響應式設計：Bootstrap、RWD 網頁開發</li>
+        <li>元件化與畫面開發：熟悉頁面切版與元件設計，能依設計稿還原高品質 UI 畫面</li>
+        <li>開發工具：Git、GitHub、VS Code、Figma</li>
+      </ul>
     </div>
 
     <!-- 🔭 未來展望 -->
     <div class="animate__animated animate__fadeInUp animate__fast animate__delay-4s">
-      <h1 class="text-2xl font-bold mb-4 border-b pb-2 text-title">未來展望</h1>
-      <p class="mb-10 leading-relaxed text-md text-justify lg:text-left">
-        透過這段學習與實作，我發現自己特別喜歡前端開發中「讓設計與技術結合，打造出直覺且美觀的使用者體驗」的過程。
-        我期望持續精進前端技能，挑戰更複雜的互動與效能優化開發，未來也會涉獵後端知識，提升全端能力，期待在團隊中發揮所長、創造價值。
+      <h1 class="text-2xl font-bold mb-4 border-b pb-2 text-title">未來展望｜Future Goals</h1>
+      <p class="leading-relaxed text-md text-justify lg:text-left">
+        在學習與實作過程中，我深刻體會到「設計與技術的融合」是前端開發最具吸引力的部分，特別是打造流暢、直覺、具有視覺層次感的使用者體驗。
+      </p>
+      <p class="mb-4 leading-relaxed text-md text-justify lg:text-left">未來我期望：</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>精進 Vue.js / React 等現代框架的熟練度</li>
+        <li>掌握效能優化與進階互動開發技巧</li>
+        <li>擴展後端知識，朝向全端能力發展</li>
+        <li>在團隊中善用溝通與協作優勢，與設計、後端工程師共同完成高品質產品</li>
+      </ul>
+      <p class="mt-4 leading-relaxed text-md text-justify lg:text-left">
+        感謝您撥冗閱讀我的自傳，我非常期待能在前端開發領域貢獻我的熱忱與努力。
       </p>
     </div>
 
@@ -91,7 +112,7 @@
     <div class="text-center animate__animated animate__fadeInUp animate__fast animate__delay-5s">
       <router-link
         to="/"
-        class="inline-block mt-6 px-6 py-2 bg-btn text-btnText border border-btnborder rounded hover:bg-btnHover transition"
+        class="inline-block mt-10 px-6 py-2 bg-btn text-btnText border border-btnborder rounded hover:bg-btnHover transition"
       >
         返回首頁
       </router-link>
