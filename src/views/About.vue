@@ -1,27 +1,30 @@
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
 
+  // ref() 用來建立基本型別的響應式變數
   const showScrollBtn = ref(false) // 控制按鈕是否顯示在畫面中
   const visible = ref(false) // 控制按鈕是否進行動畫呈現，搭配 fadein/fadeout 等
 
+  // 滾動事件處理函式
+  // 要取得捲動距離通常用 window.scrollY 或 document.documentElement.scrollTop，不需要 event 本身，可以不接參數
   const handleScroll = () => {
     if (window.scrollY > 200) {
-      // 網頁捲動超過200px 就顯示返回頂部按鈕
-      visible.value = true // 啟動 出場動畫
-      showScrollBtn.value = true
+      // 網頁捲動超過200px 顯示按鈕並觸發進場動畫
+      visible.value = true // 啟動 出場動畫 (v-if = true)
+      showScrollBtn.value = true // 套用進場動畫 class (slideinRight)
     } else {
-      showScrollBtn.value = false
-      // 讓動畫完整結束後再隱藏元件
+      showScrollBtn.value = false // 套用出場動畫 (slideOutRight)
+      // 讓動畫結束後再移除 DOM，避免動畫被中斷
       setTimeout(() => {
-        visible.value = false
+        visible.value = false // 移除按鈕區塊  v-if = false
       }, 200) // 對應 animate__faster 時間
     }
   }
-
+  // 點擊按鈕返回頂部
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-  // 元件載入後綁定 scroll 事件，持續監聽使用者是否向下捲動
+  // 元件掛載時綁定 scroll 事件，持續監聽使用者是否向下捲動
   onMounted(() => {
     window.addEventListener('scroll', handleScroll)
   })
@@ -95,7 +98,8 @@
     </div>
 
     <!--  回到頂部按鈕（滑入滑出） -->
-    <!-- 只有 visible 為 true 時，才會渲染整個按鈕區塊 -->
+    <!-- 只有 visible 為 true 時，才會渲染整個按鈕區塊，false 時這個div和按鈕會從 DOM 完全移除 -->
+    <!-- v-if 用來控制 DOM 元素是否存在於頁面上 -->
     <div
       v-if="visible"
       class="fixed bottom-6 right-6 animate__animated animate__faster"

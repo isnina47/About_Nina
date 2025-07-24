@@ -1,7 +1,7 @@
 <script setup>
   import { ref, computed, onMounted } from 'vue'
 
-  const activeCategory = ref('全部') // 綁定按鈕類別 預設先顯示全部作品
+  const activeCategory = ref('全部') // 綁定按鈕類別 預設先顯示全部作品，搭配 @click= 'activeCategory = cat 切換分類'
   const showAnimation = ref(true)
 
   onMounted(() => {
@@ -41,9 +41,14 @@
     }
   ]
 
+  // computed 是 vue3 中用來建立具備快取的計算屬性
+  // filteredWorks 是回應式變數，會根據 activeCategory 的變化自動更新內容
+  // === 型別和值都必須相同
   const filteredWorks = computed(() => {
-    if (activeCategory.value === '全部') return works
+    if (activeCategory.value === '全部') return works // activeCategory.value 是從 ref('全部') 來的，需要用 .value 取值
     return works.filter(w => w.type === activeCategory.value)
+    // 否則就回傳 works 陣列中，type 屬性與 activeCategory 相同的項目
+    // filter() 是 JS 陣列的過濾方法，會回傳符合條件的新陣列
   })
 </script>
 
@@ -62,6 +67,9 @@
     <div
       class="flex justify-center gap-4 mb-12 flex-wrap text-sm animate__animated animate__fadeInUp animate__fast"
     >
+      <!-- 點擊按鈕會切換 activeCategory，並透過 computed 動態過濾卡片 -->
+      <!-- 將陣列的分類值(cat)跑一圈，渲染成 button -->
+      <!-- 每個 v-for 元素都要加key，有助於虛擬 DOM 效能與追蹤 -->
       <button
         v-for="cat in ['全部', '個人', '團體']"
         :key="cat"
@@ -79,6 +87,8 @@
     </div>
 
     <!-- 作品卡片 -->
+    <!-- 使用 v-for 將篩選過的 works 渲染卡片，每張卡片都有圖片 + 標題 + 說明 + 查看作品連結 -->
+    <!-- 使用 showAnimation 控制是否加入 Animate.css 的動畫，在上方 JS 設計只在進場時出現 -->
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       <div
         v-for="(work, index) in filteredWorks"
