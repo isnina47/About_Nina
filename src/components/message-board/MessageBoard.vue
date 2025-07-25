@@ -10,7 +10,7 @@ MessageList 透過 props 接收 messages 渲染列表
     <!-- 留言表單 -->
     <MessageForm @submit-message="addMessage" />
 
-    <!-- 留言清單 -->
+    <!-- 留言清單 : 若 msg 有內容則顯示 -->
     <div v-if="messages.length" class="mt-8 space-y-6">
       <MessageList :messages="messages" />
     </div>
@@ -24,16 +24,42 @@ MessageList 透過 props 接收 messages 渲染列表
   import MessageForm from './MessageForm.vue'
   import MessageList from './MessageList.vue'
 
-  const messages = ref([]) // 儲存留言清單
+  //   建立留言清單的狀態（空陣列
+  const messages = ref([]) // 儲存從 API 拿回來的留言清單
 
+  //   使用 MockAPI 資源
+  const API_URL = 'https://68830e8221fa24876a9c7400.mockapi.io/messages'
+
+  // 讀取留言 (GET)
+  // 頁面載入時呼叫此函式。透過 fetch() 向 API 發送 GET 請求取得留言資料
   const fetchMessages = async () => {
-    messages.value = [] // 預留: 可串接 API
+    try {
+      const res = await fetch(API_URL)
+      const data = await res.json()
+
+      // 將留言依照時間 新到舊 排序
+      messages.value = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    } catch (err) {
+      console.error('❌ 讀取留言失敗:', err)
+    }
   }
 
-  //   接收子元件 留言表單 傳來的留言資料，加入列表最前面
-  const addMessage = msg => {
-    messages.value.unshift(msg)
+  //   新增留言 (POST)
+  const addMessage = async msg => {
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(msg)
+      })
+      const newMsg = await res.json()
+      messages.value.unshift(newMsg) // 插入到第一筆
+      // unshift() 將資料放到陣列最前面
+    } catch (err) {
+      console.error('❌ 新增留言失敗', err)
+    }
   }
 
+  //   頁面載入時自動取得留言
   onMounted(fetchMessages)
 </script>
