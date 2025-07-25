@@ -23,6 +23,7 @@ MessageList 透過 props 接收 messages 渲染列表
   import { ref, onMounted } from 'vue'
   import MessageForm from './MessageForm.vue'
   import MessageList from './MessageList.vue'
+  import Swal from 'sweetalert2'
 
   //   建立留言清單的狀態（空陣列
   const messages = ref([]) // 儲存從 API 拿回來的留言清單
@@ -60,15 +61,47 @@ MessageList 透過 props 接收 messages 渲染列表
     }
   }
 
-  //   刪除留言 (delete)
+  //   刪除留言 (delete) ，使用 sweetalert 確認提示
   //   fetch(url, { method: 'DELETE' }) 刪除後端 (mockAPI) 資料
   //   filter 篩選不等於該 id 資料
   const deleteMessage = async id => {
+    const result = await Swal.fire({
+      title: '確定要刪除這則留言嗎？',
+      text: '刪除後將無法恢復留言內容',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '刪除',
+      cancelButtonText: '取消',
+      reverseButtons: true,
+      customClass: {
+        popup: 'rounded-lg shadow-xl',
+        title: 'text-lg font-semibold text-title',
+        text: 'text-text',
+        confirmButton: 'bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900',
+        cancelButton: 'bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300'
+      },
+      buttonsStyling: false
+    })
+
+    if (!result.isConfirmed) return // 使用者取消刪除
+
     try {
       await fetch(`${API_URL}/${id}`, {
         method: 'DELETE'
       })
       messages.value = messages.value.filter(msg => msg.id !== id)
+
+      // 刪除成功提示
+      Swal.fire({
+        icon: 'success',
+        title: '留言已刪除',
+        timer: 2000,
+        showConfirmButton: false,
+        customClass: {
+          popup: 'rounded-lg shadow-md',
+          title: 'text-lg font-semibold'
+        }
+      })
     } catch (err) {
       console.error('❌ 刪除留言失敗', err)
     }
