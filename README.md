@@ -20,9 +20,16 @@
   - 技能展示
   - 工作經歷
 
+## 新增功能：留言板
+
+- 使用 MockAPI 模擬後端儲存留言資料
+- 訪客可輸入暱稱與留言內容
+- SweetAlert 彈窗提示送出或刪除留言
+- 留言即時渲染，依時間由新至舊排列
+
 ## 注意事項
 
 - 本專案為個人練習作品，無商業用途
 - 未來將持續優化 UI/UX 並擴充功能
 
-[觀看線上版本](https://isnina47.github.io/About_Nina/)
+[網站瀏覽](https://isnina47.github.io/About_Nina/)
