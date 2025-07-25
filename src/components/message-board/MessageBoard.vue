@@ -9,7 +9,7 @@
       <MessageList :messages="messages" />
     </div>
 
-    <div v-else class="mt-4 text-textLight text-sm">目前尚無留言，歡迎留言和我互動！</div>
+    <div v-else class="mt-4 text-textLight text-sm">目前尚無留言，歡迎和我互動！</div>
   </section>
 </template>
 
