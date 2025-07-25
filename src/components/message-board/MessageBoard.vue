@@ -10,9 +10,9 @@ MessageList 透過 props 接收 messages 渲染列表
     <!-- 留言表單 -->
     <MessageForm @submit-message="addMessage" />
 
-    <!-- 留言清單 : 若 msg 有內容則顯示 -->
+    <!-- 留言清單 : 若 msg 有內容則顯示，監聽 刪除訊息 事件 -->
     <div v-if="messages.length" class="mt-8 space-y-6">
-      <MessageList :messages="messages" />
+      <MessageList :messages="messages" @delete-message="deleteMessage" />
     </div>
     <!-- 無留言提示訊息 -->
     <div v-else class="mt-4 text-textLight text-sm">目前尚無留言，歡迎和我互動！</div>
@@ -60,6 +60,19 @@ MessageList 透過 props 接收 messages 渲染列表
     }
   }
 
+  //   刪除留言 (delete)
+  //   fetch(url, { method: 'DELETE' }) 刪除後端 (mockAPI) 資料
+  //   filter 篩選不等於該 id 資料
+  const deleteMessage = async id => {
+    try {
+      await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE'
+      })
+      messages.value = messages.value.filter(msg => msg.id !== id)
+    } catch (err) {
+      console.error('❌ 刪除留言失敗', err)
+    }
+  }
   //   頁面載入時自動取得留言
   onMounted(fetchMessages)
 </script>

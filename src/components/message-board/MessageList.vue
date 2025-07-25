@@ -3,7 +3,7 @@
     <li
       v-for="(msg, idx) in messages"
       :key="idx"
-      class="border-l-4 pl-4 border-gray-500 p-4 bg-white/50 shadow-md rounded"
+      class="border-l-4 pl-4 border-gray-500 p-4 bg-white/50 shadow-md rounded relative"
     >
       <!-- 暱稱 -->
       <p class="text-title font-semibold mb-1">{{ msg.name }}：</p>
@@ -16,6 +16,14 @@
       <p class="text-text leading-relaxed tracking-wide break-words">{{ msg.content }}</p>
       <!-- 時間戳記 -->
       <p class="text-xs text-textLight mt-2 text-right italic">{{ formatDate(msg.createdAt) }}</p>
+      <!-- 刪除鈕 -->
+      <button
+        class="absolute top-2 right-2"
+        @click="$emit('delete-message', msg.id)"
+        title="刪除留言"
+      >
+        ❌
+      </button>
     </li>
   </ul>
 </template>
