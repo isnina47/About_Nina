@@ -22,20 +22,22 @@
 
 <script setup>
   import { ref } from 'vue'
-  const emit = defineEmits(['submit-message'])
+  const emit = defineEmits(['submit-message']) // 宣告要向父元件 msgboard 觸發事件
 
   const name = ref('')
   const content = ref('')
 
+  //  表單送出時出發
   const handleSubmit = () => {
-    if (!name.value.trim() || !content.value.trim()) return
+    if (!name.value.trim() || !content.value.trim()) return // 防止空白提交
     const msg = {
       name: name.value,
       content: content.value,
       createdAt: new Date().toISOString()
     }
-    emit('submit-message', msg)
+    emit('submit-message', msg) // 將留言傳給父元件
     name.value = ''
     content.value = ''
+    // 清空欄位
   }
 </script>

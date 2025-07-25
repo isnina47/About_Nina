@@ -22,8 +22,8 @@
 
 <script setup>
   const props = defineProps({
-    messages: Array
+    messages: Array // 接收父層傳入的留言陣列
   })
-
+  // 格式化時間: 轉換 ISO 時間為本地時間字串
   const formatDate = iso => new Date(iso).toLocaleString()
 </script>
