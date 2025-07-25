@@ -68,7 +68,7 @@
                 </ul>
               </div>
               <div>
-                <h3 class="text-md font-semibold text-title">學習中</h3>
+                <h3 class="text-md mb-2 font-semibold text-title">學習中</h3>
                 <ul class="list-disc list-inside space-y-1">
                   <li>Tailwind CSS</li>
                   <li>React</li>
