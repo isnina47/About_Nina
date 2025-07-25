@@ -16,13 +16,26 @@
       <p class="text-text leading-relaxed tracking-wide break-words">{{ msg.content }}</p>
       <!-- 時間戳記 -->
       <p class="text-xs text-textLight mt-2 text-right italic">{{ formatDate(msg.createdAt) }}</p>
-      <!-- 刪除鈕 -->
+      <!-- 刪除鈕 （SVG + hover）-->
       <button
-        class="absolute top-2 right-2"
+        class="absolute top-2 right-2 p-1"
         @click="$emit('delete-message', msg.id)"
+        aria-label="刪除留言"
         title="刪除留言"
       >
-        ❌
+        <svg
+          class="w-6 h-6 hover:text-red-800 transition"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3m-4 0h14"
+          />
+        </svg>
       </button>
     </li>
   </ul>
