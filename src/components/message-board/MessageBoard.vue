@@ -12,7 +12,11 @@ MessageList 透過 props 接收 messages 渲染列表
 
     <!-- 留言清單 : 若 msg 有內容則顯示，監聽 刪除訊息 事件 -->
     <div v-if="messages.length" class="mt-8 space-y-6">
-      <MessageList :messages="messages" @delete-message="deleteMessage" />
+      <MessageList
+        :messages="messages"
+        @delete-message="deleteMessage"
+        @edit-message="editMessage"
+      />
     </div>
     <!-- 無留言提示訊息 -->
     <div v-else class="mt-4 text-textLight text-sm">目前尚無留言，歡迎和我互動！</div>
@@ -106,6 +110,37 @@ MessageList 透過 props 接收 messages 渲染列表
       console.error('❌ 刪除留言失敗', err)
     }
   }
-  //   頁面載入時自動取得留言
+
+  /**
+   * 編輯留言 (PUT)
+   */
+  const editMessage = async (id, newContent) => {
+    try {
+      const target = messages.value.find(msg => msg.id === id)
+      if (!target) return
+
+      const updatedMsg = { ...target, content: newContent }
+
+      const res = await fetch(`${API_URL}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedMsg)
+      })
+      const updatedData = await res.json()
+
+      messages.value = messages.value.map(msg => (msg.id === id ? updatedData : msg))
+
+      Swal.fire({
+        icon: 'success',
+        title: '留言已更新',
+        timer: 2100,
+        showConfirmButton: false
+      })
+    } catch (err) {
+      console.error('❌ 編輯留言失敗:', err)
+    }
+  }
+
+  //   頁面初始化載入留言
   onMounted(fetchMessages)
 </script>
