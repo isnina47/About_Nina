@@ -11,7 +11,7 @@
         <!-- flex-shrink 保持頭像固定大小，不因螢幕寬度壓縮變形 -->
         <div class="flex-shrink-0">
           <img
-            src="/images/nina.jpg"
+            src="/images/nina.JPG"
             alt="Nina 頭像"
             class="w-40 h-40 rounded-full shadow-lg object-cover mb-4"
           />
