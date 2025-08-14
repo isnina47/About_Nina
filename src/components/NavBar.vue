@@ -1,5 +1,7 @@
 <template>
-  <header class="w-full px-6 py-4 flex justify-between items-center border-b fixed top-0 z-50">
+  <header
+    class="w-full bg-footer border-t border-b border-black px-6 py-4 flex justify-between items-center fixed top-0 z-50"
+  >
     <!--  點擊 Logo 回首頁，不變色 -->
     <router-link to="/" class="text-xl font-bold text-title cursor-pointer">Nina</router-link>
 

@@ -6,16 +6,24 @@ export default {
         serif: ['"Noto Serif TC"', 'serif']
       },
       colors: {
-        background: '#EBDDC5', // 全站背景
-        title: '#2E4365', // 標題
-        text: '#2E4365', // 主要文字
-        textLight: '#8A3B08', // 輔助文字、hover 效果
-        btn: '#E59D2C', // 按鈕主色
-        btnHover: '#8A3B08', // 按鈕 hover
-        btnText: '#ffffff', // 按鈕文字
-        btnborder: '#8A3B08', // 按鈕邊框
-        border: '#8A3B08', // 元件邊框
-        accent: '#F3D58D' // 卡片背景或標籤底色
+        // 只用你提供的五色 + 白/黑
+        background: '#FFD3DD', // 整體淺底
+        header: '#CCA1C9',
+        footer: '#CCA1C9',
+        title: '#2d2d2d', // 深灰標題（保留可讀性）
+        text: '#4f4f4f', // 內文
+        textLight: '#92A1C3', // 次要資訊/時間
+        textHover: '#F3A0AD', // hover 重點
+        totop: '#333333',
+
+        btn: '#CCA1C9', // 主要按鈕
+        btnHover: '#92A1C3', // hover（仍在五色內）
+        btnText: '#ffffff',
+        btnborder: '#92A1C3',
+        border: '#92A1C3',
+
+        // 方便做標籤/卡片底色
+        accent: '#BED1E3'
       }
     }
   },
