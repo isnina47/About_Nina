@@ -1,5 +1,5 @@
 <template>
-  <section class="min-h-screen bg-background">
+  <section class="min-h-screen">
     <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <!-- 左：頭像 + 基本資料 -->

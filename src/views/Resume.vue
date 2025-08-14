@@ -1,6 +1,6 @@
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
-
+  import BackgroundDecor from '../components/BackgroundDecor.vue'
   const showScrollBtn = ref(false)
   const visible = ref(false)
 
@@ -23,12 +23,12 @@
 
 <template>
   <section
-    class="min-h-screen px-6 py-12 max-w-6xl mx-auto animate__animated animate__fadeIn animate__fast"
+    class="relative min-h-screen px-6 py-12 max-w-6xl mx-auto animate__animated animate__fadeIn animate__fast"
   >
     <!-- 上方：照片 + 自我介紹 -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16 items-center">
       <!-- 拍立得照片 -->
-      <div class="flex justify-center lg:justify-start">
+      <div class="flex justify-center">
         <div class="bg-white p-3 shadow-lg border rounded-lg transform rotate-[-3deg]">
           <img src="/images/ninalife.jpg" alt="Nina 拍立得照片" class="w-64 h-80 object-cover" />
           <p class="mt-2 text-center text-sm text-textLight">Life is about learning 🌱</p>
