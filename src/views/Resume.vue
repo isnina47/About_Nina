@@ -1,6 +1,7 @@
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
-  import BackgroundDecor from '../components/BackgroundDecor.vue'
+  import CrayonUnderline from '../components/CrayonUnderline.vue'
+
   const showScrollBtn = ref(false)
   const visible = ref(false)
 
@@ -41,11 +42,10 @@
         <p class="text-text mb-6 leading-relaxed">
           我熱愛前端開發，擅長將設計轉化為良好的互動體驗，持續學習新技術以提升效能與可維護性。
         </p>
-        <h2 class="text-xl font-semibold text-title mt-6 mb-2">Contact</h2>
+        <h2 class="relative inline-block text-xl font-semibold text-title mt-6 mb-2">Contact</h2>
         <div class="space-y-1 text-text">
           <p>📧 ninaaaaa1327@gmail.com</p>
           <p>📱 0905-862-327</p>
-          <p>📍 新北市土城區</p>
         </div>
       </div>
     </div>
@@ -54,7 +54,10 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
       <!-- 工作經驗 -->
       <div>
-        <h2 class="text-2xl font-bold text-title mb-4 border-b pb-2">工作經驗｜Experience</h2>
+        <h2 class="relative inline-block text-2xl font-bold text-title mb-4 pb-2">
+          工作經驗｜Experience
+          <CrayonUnderline />
+        </h2>
         <div class="space-y-6">
           <div class="border-l-4 border-btnborder pl-4">
             <p class="font-semibold text-title">緯育 TibaMe｜前端工程師養成班</p>
@@ -85,7 +88,10 @@
       <div class="space-y-8">
         <!-- 學歷 -->
         <div>
-          <h2 class="text-2xl font-bold text-title mb-4 border-b pb-2">學歷｜Education</h2>
+          <h2 class="relative inline-block text-2xl font-bold text-title mb-4 pb-2">
+            學歷｜Education
+            <CrayonUnderline />
+          </h2>
           <div>
             <p class="font-semibold text-title">文藻外語大學｜法國語文系</p>
             <p class="text-sm text-textLight">2016.09 - 2020.06</p>
@@ -94,7 +100,10 @@
 
         <!-- 技能 -->
         <div>
-          <h2 class="text-2xl font-bold text-title mb-4 border-b pb-2">技能｜Skills</h2>
+          <h2 class="relative inline-block text-2xl font-bold text-title mb-4 pb-2">
+            技能｜Skills
+            <CrayonUnderline />
+          </h2>
           <div class="space-y-4">
             <div>
               <h3 class="font-semibold text-title mb-2">前端技術</h3>
