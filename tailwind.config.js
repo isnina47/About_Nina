@@ -3,23 +3,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['"Noto Serif TC"', 'serif'] // 自訂 serif 為 Noto Serif TC
+        serif: ['"Noto Serif TC"', 'serif']
       },
       colors: {
-        // 主題色系（套用你的新配色）
-        background: '#f0f0f0', // 淺灰背景
-        header: '#6cb1c9', // 頂部導航背景
-        footer: '#6cb1c9', // 頁腳背景
-        title: '#2d2d2d', // 標題文字
-        text: '#5f5f5f', // 內文文字
-        textLight: '#9a9a9a', // 註解、時間
-        textHover: '#bf8e68', // 導航列 hover 文字（栗棕）
-        totop: '#333333', // 回到頂部按鈕色
-        btn: '#6cb1c9', // 按鈕主色
-        btnHover: '#4d96ab', // 按鈕 hover 色
+        background: '#EBDDC5', // 全站背景
+        title: '#2E4365', // 標題
+        text: '#2E4365', // 主要文字
+        textLight: '#8A3B08', // 輔助文字、hover 效果
+        btn: '#E59D2C', // 按鈕主色
+        btnHover: '#8A3B08', // 按鈕 hover
         btnText: '#ffffff', // 按鈕文字
-        btnborder: '#bf8e68', // 按鈕邊框色
-        border: '#bf8e68' // 元件邊框色
+        btnborder: '#8A3B08', // 按鈕邊框
+        border: '#8A3B08', // 元件邊框
+        accent: '#F3D58D' // 卡片背景或標籤底色
       }
     }
   },

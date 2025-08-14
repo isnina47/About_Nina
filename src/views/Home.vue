@@ -1,138 +1,72 @@
 <template>
-  <!-- min-h-screen 讓區塊的最小高度等於整個螢幕高度（100vh） -->
-  <section
-    class="min-h-screen overflow-hidden font-serif px-8 py-12 animate__animated animate__fadeIn animate__fast"
-  >
-    <div class="max-w-6xl mx-auto">
-      <div
-        class="mb-12 flex flex-col lg:flex-row items-center justify-center gap-10 animate__animated animate__fadeInDown animate__fast"
-      >
-        <!-- 上方頭像 -->
-        <!-- flex-shrink 保持頭像固定大小，不因螢幕寬度壓縮變形 -->
-        <div class="flex-shrink-0">
+  <section class="min-h-screen bg-background">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <!-- 左：頭像 + 基本資料 -->
+        <div class="flex flex-col items-center text-center">
           <img
             src="/images/nina.JPG"
             alt="Nina 頭像"
-            class="w-40 h-40 rounded-full shadow-lg object-cover mb-4"
+            class="w-40 h-40 rounded-full object-cover shadow-lg mb-6"
           />
+          <h1 class="text-3xl lg:text-4xl font-bold text-title">嗨，我是 Nina 余嘉婕</h1>
+          <p class="mt-3 text-textLight">新北市土城區｜3–4 年工作經驗｜希望職稱：前端工程師</p>
         </div>
 
-        <!-- 簡介 -->
-        <!-- 父層是 flex 子元素套用 flex-grow 會在剩餘空間自動等比例放大 -->
-        <div class="flex-grow max-w-xl">
-          <h1 class="text-2xl font-bold text-title mb-2">嗨，我是 Nina 余嘉婕 👋</h1>
-          <p class="text-lg mt-4">
-            我喜愛前端開發，喜歡學習新技術，樂於打造兼具美觀與實用的網站體驗。
+        <!-- 右：自我介紹內容 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 lg:p-8 border border-btnborder">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/20 text-sm">
+            <span class="inline-block w-2 h-2 rounded-full bg-btnborder"></span>
+            About Me
+          </div>
+
+          <p class="mt-4 leading-relaxed text-text">
+            我熱愛前端開發，擅長將設計轉化為良好的互動體驗，並持續學習新技術以提升效能與可維護性。
+            近年在個人與團隊專案中，實作 Vue 3、RWD、元件化、與 Git 版控協作。目標是打造
+            <span class="font-semibold text-textHover">美觀 × 可用 × 穩定</span>
+            的網站。
           </p>
-          <p class="mt-4 text-sm">新北市土城區｜3~4年工作經驗｜希望職稱：前端工程師</p>
-        </div>
-      </div>
 
-      <!-- 學歷 & 技能 + 工作經驗 -->
-      <!-- 1024px (桌機)為 2 欄 ) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <!-- 左側：學歷 + 技能 -->
-        <!-- space-y-6 從第2個元素開始，每元素之間自動加入 margin-top 24px -->
-        <div
-          class="space-y-6 animate__animated animate__fadeInLeft animate__fast animate__delay-1s"
-        >
-          <div>
-            <h2 class="text-2xl font-bold text-title mb-2">聯絡方式</h2>
-            <p>📧 ninaaaaa1327@gmail.com</p>
-            <p>📱 0905-862-327</p>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold text-title mb-2">學歷</h2>
-            <p class="">文藻外語大學｜法國語文系</p>
-            <p class="text-sm text-textLight">2016.09 - 2020.06</p>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold text-title mb-2">技能</h2>
-            <div class="space-y-6">
-              <!--  前端技術 -->
-              <div>
-                <h3 class="text-md mb-1 font-semibold text-title">前端技術</h3>
-                <!-- list-disc 為 • 圓點符號 -->
-                <ul class="list-disc list-inside space-y-1">
-                  <li>HTML5 / CSS3 / SASS / RWD</li>
-                  <li>JavaScript (ES6+) / jQuery</li>
-                  <li>Vue 3 / Vue Router</li>
-                </ul>
-              </div>
-              <!--  版本控制與協作工具 -->
-              <div>
-                <h3 class="text-md mb-2 font-semibold text-title">版本控制 / 設計工具</h3>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>Git / GitHub</li>
-                  <li>Figma</li>
-                </ul>
-              </div>
-              <div>
-                <h3 class="text-md mb-2 font-semibold text-title">學習中</h3>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>Tailwind CSS</li>
-                  <li>React</li>
-                  <li>Bootstrap</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+          <!-- 技術亮點條 -->
+          <ul class="mt-6 grid grid-cols-2 gap-3 text-sm">
+            <li class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-btn"></span>
+              Vue 3 / Vue Router
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-btn"></span>
+              HTML5 / CSS3 / SASS / RWD
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-btn"></span>
+              JavaScript (ES6+)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-btn"></span>
+              Git / GitHub / Figma
+            </li>
+          </ul>
 
-        <!-- 右側：工作經驗 -->
-        <div>
-          <div class="animate__animated animate__fadeInRight animate__fast animate__delay-2s">
-            <h2 class="text-2xl font-bold text-title mb-4">工作經驗</h2>
-            <div class="space-y-6">
-              <div class="border-l-4 border-border pl-4">
-                <p class="font-semibold text-title">緯育 TibaMe｜前端工程師養成班</p>
-                <p class="text-sm text-textLight">2024.06 - 2024.10</p>
-                <p>
-                  參與為期五個月的專業課程，系統性學習 HTML、CSS、JavaScript、Vue.js
-                  等前端技術，並完成個人與團隊專案，累積實作經驗。
-                </p>
-              </div>
-              <div class="border-l-4 border-border pl-4">
-                <p class="font-semibold text-title">上景磁磚美學館｜業務助理</p>
-                <p class="text-sm text-textLight">2023.09 - 2024.04</p>
-                <p>
-                  負責門市接待與產品介紹、Facebook
-                  粉專經營，並協助業務處理行政與銷售支援等庶務事務。
-                </p>
-              </div>
-              <div class="border-l-4 border-border pl-4">
-                <p class="font-semibold text-title">水燦林國小｜專案管理員</p>
-                <p class="text-sm text-textLight">2023.02 - 2023.07</p>
-                <p>
-                  協助外師管理與課程行政規劃，包含英語村活動、教學訪視與粉專經營，支援多所校內外英語教學專案。
-                </p>
-              </div>
-              <div class="border-l-4 border-border pl-4">
-                <p class="font-semibold text-title">愛美語國際語文教育｜兒童美語老師</p>
-                <p class="text-sm text-textLight">2020.10 - 2022.10</p>
-                <p>負責國小至高中學生美語教學、課業輔導與行政庶務。</p>
-              </div>
-            </div>
-          </div>
-
-          <!--  快捷按鈕獨立動畫，延後進場 -->
-          <div
-            class="mt-10 flex gap-4 animate__animated animate__fadeInUp animate__fast animate__delay-3s"
-          >
+          <!-- 按鈕區 -->
+          <div class="mt-8 flex flex-wrap gap-3">
             <router-link
               to="/about"
-              class="px-4 py-2 bg-btn border border-btnborder text-btnText rounded hover:bg-btnHover transition"
+              class="inline-flex items-center justify-center rounded-lg px-5 py-2.5 bg-btn text-btnText hover:bg-btnHover transition focus:outline-none focus:ring-2 focus:ring-btnborder/50"
             >
               查看自傳
             </router-link>
             <router-link
               to="/portfolio"
-              class="px-4 py-2 bg-btn border border-btnborder text-btnText rounded hover:bg-btnHover transition"
+              class="inline-flex items-center justify-center rounded-lg px-5 py-2.5 border border-btnborder text-btnborder bg-white hover:bg-btnHover/20 transition focus:outline-none focus:ring-2 focus:ring-btnborder/30"
             >
               查看作品集
             </router-link>
           </div>
         </div>
+      </div>
+
+      <!-- 留言板 -->
+      <div class="mt-12">
         <MessageBoard />
       </div>
     </div>
@@ -140,6 +74,5 @@
 </template>
 
 <script setup>
-  // 匯入留言板
   import MessageBoard from '../components/message-board/MessageBoard.vue'
 </script>
