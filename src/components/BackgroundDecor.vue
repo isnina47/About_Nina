@@ -1,25 +1,22 @@
 <template>
-  <!-- 全站固定背景：覆蓋整個視窗 -->
-  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
-    <!-- 底色 -->
-    <div class="absolute inset-0" style="background: #ebddc5"></div>
-
-    <!-- 左上：橘色星芒（md 以上顯示） -->
+  <!-- 只渲染在卡片內層，會被父層 overflow-hidden 裁切 -->
+  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+    <!-- 左上：星芒（rose） -->
     <svg
-      class="hidden md:block absolute top-8 -left-10 w-[200px] lg:w-[240px] h-auto"
+      class="hidden md:block absolute -left-10 -top-6 w-[180px] lg:w-[220px] h-auto"
       viewBox="0 0 220 220"
-      fill="#E59D2C"
+      fill="#F3A0AD"
     >
       <polygon
         points="110,8 128,70 178,25 145,82 212,92 145,108 178,165 128,120 110,212 92,120 42,165 75,108 8,92 75,82 42,25 92,70"
       />
     </svg>
 
-    <!-- 左下：深藍花朵（lg 以上顯示） -->
+    <!-- 左下：花朵（periwinkle） -->
     <svg
-      class="hidden lg:block absolute -left-16 bottom-6 w-[220px] xl:w-[260px] h-auto"
+      class="hidden lg:block absolute -left-16 bottom-6 w-[210px] xl:w-[250px] h-auto"
       viewBox="0 0 200 200"
-      fill="#2E4365"
+      fill="#92A1C3"
     >
       <g transform="translate(100,100)">
         <circle r="36" />
@@ -30,17 +27,17 @@
       </g>
     </svg>
 
-    <!-- 右上：淡米黃膠囊（sm 以上顯示） -->
+    <!-- 右上：膠囊（mist blue） -->
     <div
-      class="hidden sm:block absolute -right-24 -top-10 w-[420px] lg:w-[520px] h-[140px] lg:h-[180px] rounded-full"
-      style="background: #f3d58d; filter: blur(0.3px); opacity: 0.9"
+      class="hidden sm:block absolute -right-24 -top-10 w-[380px] lg:w-[480px] h-[130px] lg:h-[170px] rounded-full"
+      style="background: #bed1e3; filter: blur(0.3px); opacity: 0.9"
     ></div>
 
-    <!-- 右下：橘褐圓點群（md 以上顯示） -->
+    <!-- 右下：圓點群（mauve） -->
     <svg
-      class="hidden md:block absolute right-6 bottom-8 w-[120px] lg:w-[150px] h-auto"
+      class="hidden md:block absolute right-6 bottom-6 w-[120px] lg:w-[150px] h-auto"
       viewBox="0 0 140 80"
-      fill="#8A3B08"
+      fill="#CCA1C9"
     >
       <circle cx="10" cy="10" r="4" />
       <circle cx="40" cy="16" r="4" />

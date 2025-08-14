@@ -1,13 +1,16 @@
 <template>
   <div class="relative" :style="{ width: w + 'px', height: h + 'px' }">
-    <!-- 背後米黃色圓 -->
+    <!-- 背後圓（mist blue） -->
     <div
       class="absolute -z-10 left-[-24px] top-[18px] rounded-full"
-      :style="{ width: w * 0.85 + 'px', height: h * 0.85 + 'px', background: '#F3D58D' }"
+      :style="{ width: w * 0.85 + 'px', height: h * 0.85 + 'px', background: circleColor }"
     ></div>
 
-    <!-- 左側深藍圓點裝飾（md 以上顯示） -->
-    <div class="hidden md:block absolute -z-10 left-[-36px] top-[-10px] w-28 h-32 polka"></div>
+    <!-- 左側圓點裝飾（periwinkle，md 以上顯示） -->
+    <div
+      class="hidden md:block absolute -z-10 left-[-36px] top-[-10px] w-28 h-32 polka"
+      :style="{ '--polka': polkaColor }"
+    ></div>
 
     <!-- 貼紙剪影（SVG） -->
     <svg
@@ -46,12 +49,12 @@
         :stroke-width="outline"
         stroke-linejoin="round"
       />
-      <!-- 橘金色偏移外框（手繪感） -->
+      <!-- 玫瑰色偏移外框 -->
       <g transform="translate(6,6)">
         <path
           :d="blobPath"
           fill="none"
-          stroke="#E59D2C"
+          :stroke="outlineAccentColor"
           :stroke-width="outline * 0.65"
           stroke-linejoin="round"
           opacity=".95"
@@ -65,22 +68,25 @@
   import { computed } from 'vue'
 
   const props = defineProps({
-    // 預設放 public/images 下；開發是 "/"、佈署是 "/About_Nina/"
+    // 圖片
     src: { type: String, default: '/images/ninalife.jpg' },
+    // 尺寸
     w: { type: Number, default: 300 },
-    h: { type: Number, default: 320 }
+    h: { type: Number, default: 320 },
+    // 新色票（可改）
+    circleColor: { type: String, default: '#BED1E3' }, // 背後圓
+    outlineAccentColor: { type: String, default: '#F3A0AD' }, // 偏移外框
+    polkaColor: { type: String, default: '#92A1C3' } // 圓點
   })
 
-  // 解析最終圖片路徑（支援 / 開頭、http(s)、data:、相對路徑）
+  // 解析圖片路徑（支援 GitHub Pages base）
   const resolvedSrc = computed(() => {
     const s = props.src || ''
     if (s.startsWith('http') || s.startsWith('data:')) return s
     if (s.startsWith('/')) {
-      // 加上 base，GitHub Pages 會是 /About_Nina/
       const base = import.meta.env.BASE_URL?.replace(/\/$/, '') || ''
       return `${base}${s}`
     }
-    // 相對於此元件檔案（用於 src/assets 內的檔案）
     return new URL(s, import.meta.url).href
   })
 
@@ -94,8 +100,9 @@
 </script>
 
 <style scoped>
+  /* 使用 CSS 變數吃顏色，方便由 props 傳入 */
   .polka {
-    background-image: radial-gradient(#2e4365 4px, transparent 4px);
+    background-image: radial-gradient(var(--polka) 4px, transparent 4px);
     background-size: 18px 18px;
   }
 </style>
