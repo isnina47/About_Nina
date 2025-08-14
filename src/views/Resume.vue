@@ -1,7 +1,7 @@
 <script setup>
-  import CrayonUnderline from '../components/CrayonUnderline.vue'
   import StickerPhoto from '../components/StickerPhoto.vue'
   import BackgroundDecor from '../components/BackgroundDecor.vue'
+  import PillTitle from '../components/PillTitle.vue'
 </script>
 
 <template>
@@ -25,7 +25,6 @@
 
             <h2 class="relative inline-block text-xl font-semibold text-title mt-6 mb-2">
               Contact
-              <CrayonUnderline variant="rose" :height="16" :stroke="8" />
             </h2>
             <div class="space-y-1 text-text">
               <p>📧 ninaaaaa1327@gmail.com</p>
@@ -38,10 +37,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <!-- 工作經驗 -->
           <div>
-            <h2 class="relative inline-block text-2xl font-bold text-title mb-4 pb-2">
-              工作經驗｜Experience
-              <CrayonUnderline variant="periwinkle" :height="20" :stroke="9" />
-            </h2>
+            <PillTitle>工作經驗｜Experience</PillTitle>
             <div class="space-y-6">
               <div class="border-l-4 border-btnborder pl-4">
                 <p class="font-semibold text-title">緯育 TibaMe｜前端工程師養成班</p>
@@ -71,10 +67,7 @@
           <!-- 學歷 + 技能 -->
           <div class="space-y-8">
             <div>
-              <h2 class="relative inline-block text-2xl font-bold text-title mb-4 pb-2">
-                學歷｜Education
-                <CrayonUnderline variant="mauve" :height="18" :stroke="8" />
-              </h2>
+              <PillTitle>學歷｜Education</PillTitle>
               <div>
                 <p class="font-semibold text-title">文藻外語大學｜法國語文系</p>
                 <p class="text-sm text-textLight">2016.09 - 2020.06</p>
@@ -82,10 +75,7 @@
             </div>
 
             <div>
-              <h2 class="relative inline-block text-2xl font-bold text-title mb-4 pb-2">
-                技能｜Skills
-                <CrayonUnderline variant="rose" :height="18" :stroke="10" />
-              </h2>
+              <PillTitle>技能｜Skills</PillTitle>
               <div class="space-y-4">
                 <div>
                   <h3 class="font-semibold text-title mb-2">前端技術</h3>
@@ -112,12 +102,8 @@
               </div>
             </div>
           </div>
-          <!-- /右欄 -->
         </div>
-        <!-- /grid -->
       </div>
-      <!-- /content -->
     </div>
-    <!-- /card -->
   </section>
 </template>
