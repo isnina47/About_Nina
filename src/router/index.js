@@ -10,10 +10,10 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/About_Nina/'),
+  // ✅ 自動吃 Vite 的 base（dev 是 '/', build 到 GH Pages 會是 '/About_Nina/'）
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-  // 切換頁面時會自動滾動到頂部
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return { top: 0 }
   }
 })
