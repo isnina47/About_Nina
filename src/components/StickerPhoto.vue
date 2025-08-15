@@ -5,7 +5,6 @@
       class="absolute -z-10 left-[-24px] top-[18px] rounded-full"
       :style="{ width: w * 0.85 + 'px', height: h * 0.85 + 'px', background: circleColor }"
     ></div>
-
     <!-- 左側圓點裝飾（periwinkle，md 以上顯示） -->
     <div
       class="hidden md:block absolute -z-10 left-[-36px] top-[-10px] w-28 h-32 polka"
