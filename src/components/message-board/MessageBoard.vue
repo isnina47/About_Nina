@@ -4,22 +4,68 @@ MessageBoard 加入到 messages 陣列
 MessageList 透過 props 接收 messages 渲染列表
  -->
 
+<!-- MessageBoard.vue -->
 <template>
   <section class="mt-12 animate__animated animate__fadeIn animate__fast animate__delay-2s">
-    <h2 class="text-2xl font-bold mb-4">💬 留言給 Nina</h2>
-    <!-- 留言表單 -->
-    <MessageForm @submit-message="addMessage" />
+    <div class="max-w-3xl mx-auto bg-white/70 rounded-2xl shadow-sm border border-border p-6">
+      <!-- 標題列 -->
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-bold text-title">💬 留言給 Nina</h2>
+        <span
+          class="text-xs px-2 py-0.5 rounded-full bg-[#FFD3DD] border border-btnborder text-title"
+          v-if="!loading && !error"
+        >
+          {{ messages.length }} 則
+        </span>
+      </div>
 
-    <!-- 留言清單 : 若 msg 有內容則顯示，監聽 刪除訊息 事件 -->
-    <div v-if="messages.length" class="mt-8 space-y-6">
-      <MessageList
-        :messages="messages"
-        @delete-message="deleteMessage"
-        @edit-message="editMessage"
-      />
+      <!-- 留言表單 -->
+      <MessageForm class="mt-4" @submit-message="addMessage" />
+
+      <!-- 狀態區：載入中 -->
+      <div v-if="loading" class="mt-6 flex items-center gap-3 text-textLight" aria-live="polite">
+        <svg
+          class="h-5 w-5 animate-spin"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9" stroke-width="2" class="opacity-25"></circle>
+          <path d="M12 3a9 9 0 0 1 9 9" stroke-width="2" class="opacity-75"></path>
+        </svg>
+        <span>載入中…</span>
+      </div>
+
+      <!-- 狀態區：錯誤 -->
+      <div
+        v-else-if="error"
+        class="mt-6 rounded-lg border border-red-200 bg-red-50 text-red-700 p-4 text-sm"
+        aria-live="assertive"
+      >
+        讀取留言失敗，請稍後再試。
+      </div>
+
+      <!-- 留言清單 -->
+      <div v-else-if="messages.length" class="mt-8">
+        <!-- 用分隔線讓每則留言間距一致；MessageList 內部無需改動 -->
+        <div class="divide-y divide-border">
+          <MessageList
+            :messages="messages"
+            @delete-message="deleteMessage"
+            @edit-message="editMessage"
+          />
+        </div>
+      </div>
+
+      <!-- 空狀態 -->
+      <div
+        v-else
+        class="mt-6 rounded-lg border border-dashed border-border bg-white/60 p-6 text-center text-textLight text-sm"
+      >
+        目前尚無留言，歡迎和我互動！
+      </div>
     </div>
-    <!-- 無留言提示訊息 -->
-    <div v-else class="mt-4 text-textLight text-sm">目前尚無留言，歡迎和我互動！</div>
   </section>
 </template>
 
@@ -29,27 +75,30 @@ MessageList 透過 props 接收 messages 渲染列表
   import MessageList from './MessageList.vue'
   import Swal from 'sweetalert2'
 
-  //   建立留言清單的狀態（空陣列
-  const messages = ref([]) // 儲存從 API 拿回來的留言清單
+  const messages = ref([])
+  const loading = ref(true)
+  const error = ref(false)
 
-  //   使用 MockAPI 資源
   const API_URL = 'https://68830e8221fa24876a9c7400.mockapi.io/messages'
 
-  // 讀取留言 (GET)
-  // 頁面載入時呼叫此函式。透過 fetch() 向 API 發送 GET 請求取得留言資料
+  // 讀取留言
   const fetchMessages = async () => {
+    loading.value = true
+    error.value = false
     try {
       const res = await fetch(API_URL)
+      if (!res.ok) throw new Error('network')
       const data = await res.json()
-
-      // 將留言依照時間 新到舊 排序
       messages.value = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     } catch (err) {
       console.error('❌ 讀取留言失敗:', err)
+      error.value = true
+    } finally {
+      loading.value = false
     }
   }
 
-  //   新增留言 (POST)
+  // 新增留言
   const addMessage = async msg => {
     try {
       const res = await fetch(API_URL, {
@@ -58,19 +107,16 @@ MessageList 透過 props 接收 messages 渲染列表
         body: JSON.stringify(msg)
       })
       const newMsg = await res.json()
-      messages.value.unshift(newMsg) // 插入到第一筆
-      // unshift() 將資料放到陣列最前面
+      messages.value.unshift(newMsg)
     } catch (err) {
       console.error('❌ 新增留言失敗', err)
     }
   }
 
-  //   刪除留言 (delete) ，使用 sweetalert 確認提示
-  //   fetch(url, { method: 'DELETE' }) 刪除後端 (mockAPI) 資料
-  //   filter 篩選不等於該 id 資料
+  // 刪除留言
   const deleteMessage = async id => {
     const result = await Swal.fire({
-      title: '確定要刪除這則留言嗎？',
+      title: '確定要刪除留言嗎？',
       text: '刪除後將無法恢復留言內容',
       icon: 'warning',
       showCancelButton: true,
@@ -86,61 +132,41 @@ MessageList 透過 props 接收 messages 渲染列表
       },
       buttonsStyling: false
     })
-
-    if (!result.isConfirmed) return // 使用者取消刪除
+    if (!result.isConfirmed) return
 
     try {
-      await fetch(`${API_URL}/${id}`, {
-        method: 'DELETE'
-      })
+      await fetch(`${API_URL}/${id}`, { method: 'DELETE' })
       messages.value = messages.value.filter(msg => msg.id !== id)
-
-      // 刪除成功提示
       Swal.fire({
         icon: 'success',
         title: '留言已刪除',
         timer: 2000,
         showConfirmButton: false,
-        customClass: {
-          popup: 'rounded-lg shadow-md',
-          title: 'text-lg font-semibold'
-        }
+        customClass: { popup: 'rounded-lg shadow-md', title: 'text-lg font-semibold' }
       })
     } catch (err) {
       console.error('❌ 刪除留言失敗', err)
     }
   }
 
-  /**
-   * 編輯留言 (PUT)
-   */
+  // 編輯留言
   const editMessage = async (id, newContent) => {
     try {
       const target = messages.value.find(msg => msg.id === id)
       if (!target) return
-
       const updatedMsg = { ...target, content: newContent }
-
       const res = await fetch(`${API_URL}/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedMsg)
       })
       const updatedData = await res.json()
-
       messages.value = messages.value.map(msg => (msg.id === id ? updatedData : msg))
-
-      Swal.fire({
-        icon: 'success',
-        title: '留言已更新',
-        timer: 2100,
-        showConfirmButton: false
-      })
+      Swal.fire({ icon: 'success', title: '留言已更新', timer: 2100, showConfirmButton: false })
     } catch (err) {
       console.error('❌ 編輯留言失敗:', err)
     }
   }
 
-  //   頁面初始化載入留言
   onMounted(fetchMessages)
 </script>
