@@ -1,138 +1,249 @@
 <template>
-  <!-- min-h-screen 讓區塊的最小高度等於整個螢幕高度（100vh） -->
   <section
-    class="min-h-screen overflow-hidden font-serif px-8 py-12 animate__animated animate__fadeIn animate__fast"
+    class="relative min-h-[78vh] overflow-hidden animate__animated animate__fadeIn animate__fast"
   >
-    <div class="max-w-6xl mx-auto">
+    <!-- 背景：柔和漸層 + 網格點（手機隱藏，提效能） -->
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
       <div
-        class="mb-12 flex flex-col lg:flex-row items-center justify-center gap-10 animate__animated animate__fadeInDown animate__fast"
+        class="absolute inset-0 bg-gradient-to-b from-[#FFEAF0] via-[#F7F0FF] to-[#FFFFFF]"
+      ></div>
+
+      <svg
+        class="hidden md:block absolute -top-12 -left-12 w-[420px] h-[420px] opacity-40"
+        viewBox="0 0 200 200"
+        fill="none"
+        aria-hidden="true"
       >
-        <!-- 上方頭像 -->
-        <!-- flex-shrink 保持頭像固定大小，不因螢幕寬度壓縮變形 -->
-        <div class="flex-shrink-0">
-          <img
-            src="/images/nina.JPG"
-            alt="Nina 頭像"
-            class="w-40 h-40 rounded-full shadow-lg object-cover mb-4"
-          />
+        <defs>
+          <pattern id="dotgrid" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+            <circle cx="1.2" cy="1.2" r="1" fill="#BED1E3" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dotgrid)"></rect>
+      </svg>
+
+      <div
+        class="hidden md:block absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-[#F3A0AD]/20 blur-3xl"
+      ></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 py-14 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <!-- 左：頭像 + 身分 -->
+        <div class="flex flex-col items-center text-center">
+          <div class="relative">
+            <div class="absolute -inset-2 rounded-full bg-[#BED1E3]/40 blur-xl"></div>
+            <img
+              src="/images/nina.JPG"
+              alt="Nina 頭像"
+              width="192"
+              height="192"
+              fetchpriority="high"
+              decoding="async"
+              class="relative w-40 h-40 lg:w-48 lg:h-48 rounded-full object-cover shadow-lg"
+            />
+          </div>
+
+          <div
+            class="mt-5 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFD3DD] border border-btnborder"
+          >
+            <span
+              class="inline-block w-1.5 h-1.5 rounded-full bg-btnborder"
+              aria-hidden="true"
+            ></span>
+            <span class="text-sm font-medium text-title">Frontend Developer / 前端工程師</span>
+          </div>
+
+          <h1 class="mt-4 text-3xl lg:text-4xl font-bold text-title tracking-tight leading-tight">
+            Hi，我是
+            <span class="text-title">Nina 余嘉婕</span>
+          </h1>
+          <p class="mt-2 text-textLight">新北市土城區｜3–4 年工作經驗</p>
+
+          <p class="mt-5 max-w-prose text-text leading-relaxed">
+            我喜愛前端開發，擅長把設計轉化為良好的互動體驗，並持續精進
+            <span class="font-semibold">元件化、效能與可維護性。</span>
+            目標：打造
+            <span class="font-semibold text-title">美觀 × 可用 × 穩定</span>
+            的網站！
+          </p>
+
+          <!-- 行動按鈕 -->
+          <div class="mt-7 flex flex-wrap gap-3">
+            <router-link
+              to="/resume"
+              aria-label="查看履歷"
+              class="group inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn border border-btnborder hover:bg-btnHover transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-btnborder focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            >
+              履歷
+              <svg
+                class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 2h8l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 2v6h6"
+                />
+              </svg>
+            </router-link>
+
+            <router-link
+              to="/portfolio"
+              aria-label="前往作品集"
+              class="group inline-flex items-center justify-center px-6 py-2 rounded-lg bg-white text-btnborder border border-btnborder hover:bg-btnHover/20 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-btnborder focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            >
+              作品集
+              <svg
+                class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"
+                />
+              </svg>
+            </router-link>
+          </div>
         </div>
 
-        <!-- 簡介 -->
-        <!-- 父層是 flex 子元素套用 flex-grow 會在剩餘空間自動等比例放大 -->
-        <div class="flex-grow max-w-xl">
-          <h1 class="text-2xl font-bold text-title mb-2">嗨，我是 Nina 余嘉婕 👋</h1>
-          <p class="text-lg mt-4">
-            我喜愛前端開發，喜歡學習新技術，樂於打造兼具美觀與實用的網站體驗。
-          </p>
-          <p class="mt-4 text-sm">新北市土城區｜3~4年工作經驗｜希望職稱：前端工程師</p>
+        <!-- 右：（ 轉職動機 + 職涯目標） -->
+        <div
+          class="relative rounded-2xl border border-[#222222] bg-white/70 shadow-md backdrop-blur-sm p-6 lg:p-8"
+        >
+          <div class="mb-3">
+            <PillTitle>關於我｜About Me</PillTitle>
+          </div>
+
+          <!-- 轉職動機 -->
+          <div class="mt-4">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/40 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
+            >
+              轉職動機
+            </div>
+            <p class="mt-3 text-text leading-relaxed">
+              曾任行政與業務助理，因參與公司網站改版而對前端開發產生興趣；之後投入系統化學習與專案實作，
+              結合細心規劃與美感，致力於打造兼具
+              <span class="font-semibold">功能性與使用者體驗</span>
+              的網站。
+            </p>
+          </div>
+
+          <!-- 職涯目標 -->
+          <div class="mt-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/40 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
+            >
+              職涯目標
+            </div>
+            <ul class="mt-3 space-y-3 text-text">
+              <li class="flex items-start gap-3">
+                <span class="bullet-dot" aria-hidden="true"></span>
+                <p>
+                  <span class="font-semibold">希望職稱：</span>
+                  前端工程師（Vue / React）
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="bullet-dot" aria-hidden="true"></span>
+                <p>
+                  <span class="font-semibold">技術成長：</span>
+                  深化組件化與可維護架構，持續優化效能與可及性（a11y）
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="bullet-dot" aria-hidden="true"></span>
+                <p>
+                  <span class="font-semibold">協作目標：</span>
+                  與設計、後端密切合作，能獨立完成模組並主動提出改進
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 技術亮點 -->
+          <div class="mt-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/40 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
+            >
+              技術亮點
+            </div>
+            <ul class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 text-text">
+              <li class="flex items-start gap-3">
+                <span class="bullet-dot" aria-hidden="true"></span>
+                <p>
+                  <span class="font-semibold">Vue 3 / Composition API：</span>
+                  元件化結構、維護性高
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="bullet-dot" aria-hidden="true"></span>
+
+                <p>
+                  <span class="font-semibold">Tailwind CSS：</span>
+                  設計系統化、快速完成 RWD
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="bullet-dot" aria-hidden="true"></span>
+
+                <p>
+                  <span class="font-semibold">互動體驗：</span>
+                  Animate.css 進場、細節過場
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="bullet-dot" aria-hidden="true"></span>
+
+                <p>
+                  <span class="font-semibold">協作工具：</span>
+                  Git / GitHub、Figma
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 求職狀態膠囊 -->
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span
+              class="px-3 py-1 rounded-full bg-[#FFD3DD] border border-btnborder text-sm text-title"
+            >
+              求職中・前端工程師
+            </span>
+            <span
+              class="px-3 py-1 rounded-full bg-white border border-btnborder text-sm text-title"
+            >
+              可遠端／台北新北
+            </span>
+            <span
+              class="px-3 py-1 rounded-full bg-white border border-btnborder text-sm text-title"
+            >
+              可到職：兩週內
+            </span>
+          </div>
         </div>
       </div>
 
-      <!-- 學歷 & 技能 + 工作經驗 -->
-      <!-- 1024px (桌機)為 2 欄 ) -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <!-- 左側：學歷 + 技能 -->
-        <!-- space-y-6 從第2個元素開始，每元素之間自動加入 margin-top 24px -->
-        <div
-          class="space-y-6 animate__animated animate__fadeInLeft animate__fast animate__delay-1s"
-        >
-          <div>
-            <h2 class="text-2xl font-bold text-title mb-2">聯絡方式</h2>
-            <p>📧 ninaaaaa1327@gmail.com</p>
-            <p>📱 0905-862-327</p>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold text-title mb-2">學歷</h2>
-            <p class="">文藻外語大學｜法國語文系</p>
-            <p class="text-sm text-textLight">2016.09 - 2020.06</p>
-          </div>
-          <div>
-            <h2 class="text-2xl font-bold text-title mb-2">技能</h2>
-            <div class="space-y-6">
-              <!--  前端技術 -->
-              <div>
-                <h3 class="text-md mb-1 font-semibold text-title">前端技術</h3>
-                <!-- list-disc 為 • 圓點符號 -->
-                <ul class="list-disc list-inside space-y-1">
-                  <li>HTML5 / CSS3 / SASS / RWD</li>
-                  <li>JavaScript (ES6+) / jQuery</li>
-                  <li>Vue 3 / Vue Router</li>
-                </ul>
-              </div>
-              <!--  版本控制與協作工具 -->
-              <div>
-                <h3 class="text-md mb-2 font-semibold text-title">版本控制 / 設計工具</h3>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>Git / GitHub</li>
-                  <li>Figma</li>
-                </ul>
-              </div>
-              <div>
-                <h3 class="text-md mb-2 font-semibold text-title">學習中</h3>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>Tailwind CSS</li>
-                  <li>React</li>
-                  <li>Bootstrap</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 右側：工作經驗 -->
-        <div>
-          <div class="animate__animated animate__fadeInRight animate__fast animate__delay-2s">
-            <h2 class="text-2xl font-bold text-title mb-4">工作經驗</h2>
-            <div class="space-y-6">
-              <div class="border-l-4 border-border pl-4">
-                <p class="font-semibold text-title">緯育 TibaMe｜前端工程師養成班</p>
-                <p class="text-sm text-textLight">2024.06 - 2024.10</p>
-                <p>
-                  參與為期五個月的專業課程，系統性學習 HTML、CSS、JavaScript、Vue.js
-                  等前端技術，並完成個人與團隊專案，累積實作經驗。
-                </p>
-              </div>
-              <div class="border-l-4 border-border pl-4">
-                <p class="font-semibold text-title">上景磁磚美學館｜業務助理</p>
-                <p class="text-sm text-textLight">2023.09 - 2024.04</p>
-                <p>
-                  負責門市接待與產品介紹、Facebook
-                  粉專經營，並協助業務處理行政與銷售支援等庶務事務。
-                </p>
-              </div>
-              <div class="border-l-4 border-border pl-4">
-                <p class="font-semibold text-title">水燦林國小｜專案管理員</p>
-                <p class="text-sm text-textLight">2023.02 - 2023.07</p>
-                <p>
-                  協助外師管理與課程行政規劃，包含英語村活動、教學訪視與粉專經營，支援多所校內外英語教學專案。
-                </p>
-              </div>
-              <div class="border-l-4 border-border pl-4">
-                <p class="font-semibold text-title">愛美語國際語文教育｜兒童美語老師</p>
-                <p class="text-sm text-textLight">2020.10 - 2022.10</p>
-                <p>負責國小至高中學生美語教學、課業輔導與行政庶務。</p>
-              </div>
-            </div>
-          </div>
-
-          <!--  快捷按鈕獨立動畫，延後進場 -->
-          <div
-            class="mt-10 flex gap-4 animate__animated animate__fadeInUp animate__fast animate__delay-3s"
-          >
-            <router-link
-              to="/about"
-              class="px-4 py-2 bg-btn border border-btnborder text-btnText rounded hover:bg-btnHover transition"
-            >
-              查看自傳
-            </router-link>
-            <router-link
-              to="/portfolio"
-              class="px-4 py-2 bg-btn border border-btnborder text-btnText rounded hover:bg-btnHover transition"
-            >
-              查看作品集
-            </router-link>
-          </div>
-        </div>
+      <!-- 留言板 -->
+      <div class="mt-14">
+        <!-- SEO/語意更好） -->
+        <h2 class="sr-only">留言板</h2>
         <MessageBoard />
       </div>
     </div>
@@ -140,6 +251,15 @@
 </template>
 
 <script setup>
-  // 匯入留言板
   import MessageBoard from '../components/message-board/MessageBoard.vue'
+  import PillTitle from '../components/PillTitle.vue'
 </script>
+
+<style scoped>
+  .bullet-dot {
+    @apply mt-1 inline-block w-2 h-2 rounded-full bg-btn shrink-0;
+  }
+  /* 
+   w-2 h-2 = 8px 圓點；mt-1 稍微下移對齊文字基線；
+   shrink-0 防止換行時被壓扁。 */
+</style>

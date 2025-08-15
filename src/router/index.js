@@ -1,20 +1,19 @@
-// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import About from '../views/About.vue'
+import Resume from '../views/Resume.vue'
 import Portfolio from '../views/Portfolio.vue'
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/about', name: 'About', component: About },
-  { path: '/portfolio', name: 'Portfolio', component: Portfolio }
+  { path: '/', name: 'Home', component: Home, meta: { grid: false } },
+  { path: '/resume', name: 'Resume', component: Resume, meta: { grid: true } },
+  { path: '/portfolio', name: 'Portfolio', component: Portfolio, meta: { grid: true } }
 ]
 
 const router = createRouter({
-  history: createWebHistory('/About_Nina/'),
+  // ✅ 自動吃 Vite 的 base（dev 是 '/', build 到 GH Pages 會是 '/About_Nina/'）
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-  // 切換頁面時會自動滾動到頂部
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return { top: 0 }
   }
 })

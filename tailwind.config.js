@@ -3,24 +3,29 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['"Noto Serif TC"', 'serif'] // 自訂 serif 為 Noto Serif TC
+        serif: ['"Noto Serif TC"', 'serif']
       },
       colors: {
-        background: '#f5f3ef',
-        header: '#eae4dc',
-        footer: '#eae4dc',
-        title: '#2d2d2d', //標題
-        text: '#5f5f5f', //內文
-        textLight: '#9a9a9a', // 註解或時間
-        textHover: '#70866c', //導航列文字
+        // 只用你提供的五色 + 白/黑
+        background: '#FFD3DD', // 整體淺底
+        header: '#CCA1C9',
+        footer: '#CCA1C9',
+        title: '#2d2d2d', // 深灰標題（保留可讀性）
+        text: '#4f4f4f', // 內文
+        textLight: '#92A1C3', // 次要資訊/時間
+        textHover: '#ffffff', // hover 重點
         totop: '#333333',
-        btn: '#b2a89d',
-        btnHover: '#998e82',
-        btnText: '#2e2e2e',
-        btnborder: '#cfc7bd',
-        border: '#4e4a45'
+
+        btn: '#F3A0AD', // 主要按鈕
+        btnHover: '#BED1E3',
+        btnText: '#111111',
+        btnborder: '#000000',
+        border: '#92A1C3',
+
+        // 方便做標籤/卡片底色
+        accent: '#BED1E3'
       }
     }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/line-clamp')]
 }
