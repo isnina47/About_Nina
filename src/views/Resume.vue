@@ -41,7 +41,9 @@
           <div
             class="relative rounded-2xl border border-[#222222] bg-[#e2d3ff]/40 shadow-md backdrop-blur-sm p-6"
           >
-            <h1 class="text-2xl font-bold text-title mb-3">朝前端工程師邁進！</h1>
+            <h1 class="text-xl font-bold text-title mb-3">
+              前端工程師（Vue / React）｜Nina 余嘉婕
+            </h1>
             <p class="text-text mb-6 leading-relaxed">
               Hi！我是 Nina
               余嘉婕，畢業於文藻外語大學。個性細心，擅長規劃與團隊協作，具備良好溝通能力與責任感，能快速適應並完成各項任務。
