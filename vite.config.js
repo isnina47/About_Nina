@@ -9,8 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: true, // 讓手機可連區網
     port: 5173,
     strictPort: true
-  },
-  assetsInclude: ['**/*.JPG']
+  }
 }))
 // dev 模式 base = / → 本地網址直接是 http://192.168.1.106:5173/
 
