@@ -1,54 +1,65 @@
 <script setup>
   import { ref, computed, onMounted } from 'vue'
+  import PillTitle from '../components/PillTitle.vue'
 
-  const activeCategory = ref('全部') // 綁定按鈕類別 預設先顯示全部作品，搭配 @click= 'activeCategory = cat 切換分類'
-  const showAnimation = ref(true)
+  // ✅ 用 Vite 方式匯入資產，避免 GitHub Pages 子路徑失效
+  const imgTodo = new URL('../assets/portfolio/todolist.png', import.meta.url).href
+  const imgAbout = new URL('../assets/portfolio/aboutNina.png', import.meta.url).href
+  const imgHouse = new URL('../assets/portfolio/ninaproject.png', import.meta.url).href
+  const imgIllu = new URL('../assets/portfolio/illusionLab.png', import.meta.url).href
+
+  const CATEGORIES = ['全部', '個人', '團體']
+  const activeCategory = ref('全部')
+  const showAnimation = ref(true) // 首次進場使用
 
   onMounted(() => {
+    // 首次進場做一次淡入，2 秒後關閉（避免切分類時反覆動畫）
     setTimeout(() => {
       showAnimation.value = false
-    }, 2000) // 元件掛載後，2秒後將動畫設為 false，用於觸發一次性動畫
+    }, 2000)
   })
 
   const works = [
     {
-      title: 'Todo List',
-      description: '使用 React 18 搭配 Tailwind CSS 實作待辦清單應用。',
-      image: './images/todolist.png',
-      link: 'https://isnina47.github.io/todo-list-nina/',
-      type: '個人'
+      title: 'About Nina',
+      description:
+        '個人簡介網站，含動畫效果、自我介紹、技能展示、工作經歷，並新增留言板功能串接 MockAPI。',
+      image: imgAbout,
+      link: 'https://isnina47.github.io/About_Nina/',
+      type: '個人',
+      tags: ['Vue 3', 'Tailwind CSS', 'MockAPI']
     },
     {
-      title: 'About Nina',
-      description: '使用 Vue + Tailwind 打造個人簡介網站。',
-      image: './images/aboutNina.png',
-      link: 'https://isnina47.github.io/About_Nina/',
-      type: '個人'
+      title: 'Todo List',
+      description:
+        '待辦清單，支援新增、編輯、刪除、搜尋、進度條與動畫效果，並使用 localStorage 儲存資料。',
+      image: imgTodo,
+      link: 'https://isnina47.github.io/todo-list-nina/',
+      type: '個人',
+      tags: ['React', 'Tailwind CSS', 'Hooks']
     },
     {
       title: '屋裡',
-      description: '應用JavaScript + jQuery 打造老屋介紹網站。',
-      image: './images/ninaproject.png',
+      description: '依縣市與文創類別快速篩選，支援關鍵字搜尋，附老屋照片與簡介，RWD 響應式體驗。',
+      image: imgHouse,
       link: 'https://isnina47.github.io/nina_project/',
-      type: '個人'
+      type: '個人',
+      tags: ['JavaScript', 'jQuery', '老屋導覽']
     },
     {
       title: '幻浸實驗室',
-      description: '使用Vue及JavaScript設計沉浸式體驗購票網站及客製化票券。',
-      image: './images/illusionLab.png',
+      description:
+        'Vue 3 + Vite 開發沉浸式活動購票網站，包含活動購票與客製化票券功能，我負責「星際邊境」頁面、票券客製化、購物車等互動模組。',
+      image: imgIllu,
       link: 'https://tibamef2e.com/tid102/g2/',
-      type: '團體'
+      type: '團體',
+      tags: ['Vue 3', '票券客製化', 'Composition API']
     }
   ]
 
-  // computed 是 vue3 中用來建立具備快取的計算屬性
-  // filteredWorks 是回應式變數，會根據 activeCategory 的變化自動更新內容
-  // === 型別和值都必須相同
   const filteredWorks = computed(() => {
-    if (activeCategory.value === '全部') return works // activeCategory.value 是從 ref('全部') 來的，需要用 .value 取值
+    if (activeCategory.value === '全部') return works
     return works.filter(w => w.type === activeCategory.value)
-    // 否則就回傳 works 陣列中，type 屬性與 activeCategory 相同的項目
-    // filter() 是 JS 陣列的過濾方法，會回傳符合條件的新陣列
   })
 </script>
 
@@ -56,74 +67,116 @@
   <section
     class="min-h-screen px-6 py-20 max-w-6xl mx-auto animate__animated animate__fadeIn animate__fast"
   >
-    <h1
-      class="text-2xl font-bold text-title text-center mb-10 animate__animated animate__fadeInDown animate__fast"
-    >
-      🎨 我的作品集
-    </h1>
+    <!-- 標題：與全站一致 -->
+    <div class="text-center">
+      <PillTitle>作品集｜Projects</PillTitle>
+    </div>
 
-    <!-- 分類按鈕 -->
-    <!-- flex-wrap自動換行 -->
-    <div
-      class="flex justify-center gap-4 mb-12 flex-wrap text-sm animate__animated animate__fadeInUp animate__fast"
-    >
-      <!-- 點擊按鈕會切換 activeCategory，並透過 computed 動態過濾卡片 -->
-      <!-- 將陣列的分類值(cat)跑一圈，渲染成 button -->
-      <!-- 每個 v-for 元素都要加key，有助於虛擬 DOM 效能與追蹤 -->
+    <!-- 分類按鈕：沿用站上按鈕語彙 -->
+    <div class="flex justify-center gap-3 mb-10 flex-wrap text-sm">
       <button
-        v-for="cat in ['全部', '個人', '團體']"
+        v-for="cat in CATEGORIES"
         :key="cat"
         @click="activeCategory = cat"
         :class="[
-          'px-4 py-2 rounded-full border font-medium transition',
+          'px-4 py-1 rounded-full border font-medium transition',
           activeCategory === cat
             ? 'bg-btn text-btnText border-btn'
-            : 'bg-white text-textColor border-gray-300 hover:bg-gray-100'
+            : 'bg-white text-textColor border-btnborder hover:bg-btnHover/10'
         ]"
       >
         {{ cat }}
       </button>
-      <!-- 使用條件 class : 點選變色 -->
     </div>
 
     <!-- 作品卡片 -->
-    <!-- 使用 v-for 將篩選過的 works 渲染卡片，每張卡片都有圖片 + 標題 + 說明 + 查看作品連結 -->
-    <!-- 使用 showAnimation 控制是否加入 Animate.css 的動畫，在上方 JS 設計只在進場時出現 -->
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      <div
+      <article
         v-for="(work, index) in filteredWorks"
         :key="work.title + index"
-        class="bg-white border rounded-xl overflow-hidden shadow transition-transform duration-300 hover:scale-105 relative flex flex-col h-full"
+        class="bg-white border border-btnborder rounded-xl overflow-hidden shadow-sm transition hover:-translate-y-0.5 hover:shadow-md flex flex-col h-full"
         :class="[showAnimation ? 'animate__animated animate__fadeInUp animate__fast' : '']"
       >
-        <!-- 圖片區塊 固定高度並填滿比例 -->
-        <img :src="work.image" :alt="work.title" class="w-full h-48 object-cover" />
+        <!-- 圖片 -->
+        <div class="flex items-center justify-center bg-white h-48 p-4">
+          <img :src="work.image" :alt="work.title" class="max-h-full max-w-full object-contain" />
+        </div>
 
-        <!-- 內容區塊 -->
+        <!-- 內容 -->
         <div class="p-6 flex flex-col flex-grow text-textColor">
-          <h2 class="text-xl font-semibold mb-2 text-title">{{ work.title }}</h2>
-          <p class="text-md leading-relaxed flex-grow">
-            {{ work.description }}
-          </p>
+          <h2 class="text-xl font-semibold mb-1 text-title">{{ work.title }}</h2>
+          <p class="mb-3 leading-relaxed">{{ work.description }}</p>
+
+          <!-- 標籤（與全站膠囊風格一致） -->
+          <ul class="flex flex-wrap gap-2 mb-4">
+            <li
+              v-for="t in work.tags"
+              :key="t"
+              class="px-2 py-0.5 text-xs rounded-full bg-[#FFD3DD] text-title border border-btnborder"
+            >
+              {{ t }}
+            </li>
+          </ul>
+
           <a
             :href="work.link"
             target="_blank"
-            class="mt-4 px-4 py-2 bg-btn text-btnText border border-btnborder rounded hover:bg-btnHover transition w-fit"
+            rel="noopener"
+            class="mt-auto inline-flex items-center justify-center px-3 py-1 rounded-lg text-btnText bg-btn border border-btnborder hover:bg-btnHover transition w-fit"
           >
             查看作品
+            <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
           </a>
         </div>
-      </div>
-      <!-- target="_blank" 點擊開分頁 -->
+      </article>
     </div>
 
-    <!-- 🏠 返回首頁 -->
-    <div class="text-center animate__animated animate__fadeInUp animate__fast">
+    <!-- 快捷按鈕 -->
+    <div class="mt-10 flex flex-wrap gap-5 justify-center">
+      <!-- 回首頁 -->
       <router-link
         to="/"
-        class="inline-block mt-20 px-6 py-2 bg-btn text-btnText border border-btnborder rounded hover:bg-btnHover transition"
+        class="inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn border border-btnborder hover:bg-btnHover transition"
       >
-        返回首頁
+        <!-- 小箭頭 icon -->
+        <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        首頁
+      </router-link>
+
+      <!-- 履歷 -->
+      <router-link
+        to="/resume"
+        class="inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn border border-btnborder hover:bg-btnHover transition"
+      >
+        履歷
+        <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4z"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"
+          />
+        </svg>
       </router-link>
     </div>
   </section>
