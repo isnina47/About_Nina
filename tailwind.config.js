@@ -16,9 +16,9 @@ export default {
         textHover: '#ffffff', // hover 重點
         totop: '#333333',
 
-        btn: '#CCA1C9', // 主要按鈕
-        btnHover: '#92A1C3', // hover（仍在五色內）
-        btnText: '#ffffff',
+        btn: '#F3A0AD', // 主要按鈕
+        btnHover: '#BED1E3',
+        btnText: '#111111',
         btnborder: '#92A1C3',
         border: '#92A1C3',
 

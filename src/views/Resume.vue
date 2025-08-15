@@ -27,7 +27,7 @@
 </script>
 
 <template>
-  <section>
+  <section class="animate__animated animate__fadeIn animate__fast">
     <div class="relative mx-auto max-w-5xl overflow-hidden">
       <!-- 卡片內容（保持相對定位，蓋在裝飾之上） -->
       <div class="relative p-6 md:p-10">
@@ -39,7 +39,7 @@
 
           <!-- 右半邊 -->
           <div
-            class="relative rounded-2xl border border-[#222222] bg-[#e2d3ff]/20 shadow-md backdrop-blur-sm p-6"
+            class="relative rounded-2xl border border-[#222222] bg-[#e2d3ff]/40 shadow-md backdrop-blur-sm p-6"
           >
             <h1 class="text-2xl font-bold text-title mb-3">朝前端工程師邁進！</h1>
             <p class="text-text mb-6 leading-relaxed">
@@ -230,6 +230,42 @@
             </div>
           </div>
         </div>
+      </div>
+      <!-- 快捷按鈕 -->
+      <div class="my-6 flex flex-wrap gap-5 justify-center">
+        <!-- 回首頁 -->
+        <router-link
+          to="/"
+          class="inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn hover:bg-btnHover transition"
+        >
+          <!-- 小箭頭 icon -->
+          <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          HOME
+        </router-link>
+
+        <!-- 作品集 -->
+        <router-link
+          to="/portfolio"
+          class="inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn hover:bg-btnHover transition"
+        >
+          PROJECTS
+          <!-- 小方格 icon（可省略） -->
+          <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"
+            />
+          </svg>
+        </router-link>
       </div>
     </div>
   </section>
