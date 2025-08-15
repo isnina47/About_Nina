@@ -19,7 +19,7 @@ export default {
         btn: '#F3A0AD', // 主要按鈕
         btnHover: '#BED1E3',
         btnText: '#111111',
-        btnborder: '#92A1C3',
+        btnborder: '#000000',
         border: '#92A1C3',
 
         // 方便做標籤/卡片底色

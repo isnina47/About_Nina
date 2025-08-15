@@ -14,7 +14,7 @@
         </div>
 
         <!-- 右：自我介紹內容 -->
-        <div class="bg-white rounded-lg shadow-lg p-6 lg:p-8 border border-btnborder">
+        <div class="bg-white rounded-lg shadow-lg p-6 lg:p-8 border border-border">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/20 text-sm">
             <span class="inline-block w-2 h-2 rounded-full bg-btnborder"></span>
             About Me

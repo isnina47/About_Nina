@@ -232,11 +232,11 @@
         </div>
       </div>
       <!-- 快捷按鈕 -->
-      <div class="my-6 flex flex-wrap gap-5 justify-center">
+      <div class="my-8 flex flex-wrap gap-5 justify-center">
         <!-- 回首頁 -->
         <router-link
           to="/"
-          class="inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn hover:bg-btnHover transition"
+          class="inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn border border-btnborder hover:bg-btnHover transition"
         >
           <!-- 小箭頭 icon -->
           <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -253,7 +253,7 @@
         <!-- 作品集 -->
         <router-link
           to="/portfolio"
-          class="inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn hover:bg-btnHover transition"
+          class="inline-flex items-center justify-center px-6 py-2 rounded-lg text-btnText bg-btn border border-btnborder hover:bg-btnHover transition"
         >
           PROJECTS
           <!-- 小方格 icon（可省略） -->
