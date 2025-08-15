@@ -13,7 +13,7 @@ export default {
         title: '#2d2d2d', // 深灰標題（保留可讀性）
         text: '#4f4f4f', // 內文
         textLight: '#92A1C3', // 次要資訊/時間
-        textHover: '#F3A0AD', // hover 重點
+        textHover: '#ffffff', // hover 重點
         totop: '#333333',
 
         btn: '#CCA1C9', // 主要按鈕

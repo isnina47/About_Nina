@@ -1,13 +1,12 @@
-// src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Resume from '../views/Resume.vue'
 import Portfolio from '../views/Portfolio.vue'
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/resume', name: 'Resume', component: Resume },
-  { path: '/portfolio', name: 'Portfolio', component: Portfolio }
+  { path: '/', name: 'Home', component: Home, meta: { grid: false } },
+  { path: '/resume', name: 'Resume', component: Resume, meta: { grid: true } },
+  { path: '/portfolio', name: 'Portfolio', component: Portfolio, meta: { grid: true } }
 ]
 
 const router = createRouter({

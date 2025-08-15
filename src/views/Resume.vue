@@ -1,6 +1,5 @@
 <script setup>
   import StickerPhoto from '../components/StickerPhoto.vue'
-  import BackgroundDecor from '../components/BackgroundDecor.vue'
   import PillTitle from '../components/PillTitle.vue'
   import ContactPills from '../components/ContactPills.vue'
 
@@ -28,7 +27,6 @@
 </script>
 
 <template>
-  <BackgroundDecor />
   <section>
     <div class="relative mx-auto max-w-5xl overflow-hidden">
       <!-- 卡片內容（保持相對定位，蓋在裝飾之上） -->
