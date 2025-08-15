@@ -2,7 +2,7 @@
   <address class="not-italic flex flex-wrap gap-3">
     <a
       :href="`mailto:${email}`"
-      class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm border-btnborder bg-[#FFD3DD]/80 hover:bg-[#FFD3DD] transition"
+      class="inline-flex items-center gap-2 px-3 py-1 text-sm transition hover:-translate-y-0.5"
     >
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path
@@ -18,7 +18,7 @@
 
     <a
       :href="`tel:${tel}`"
-      class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm border-btnborder bg-[#BED1E3]/80 hover:bg-[#BED1E3] transition"
+      class="inline-flex items-center gap-2 px-3 py-1 text-sm transition hover:-translate-y-0.5"
     >
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path

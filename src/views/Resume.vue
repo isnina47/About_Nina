@@ -50,22 +50,9 @@
             </p>
 
             <div class="text-text">
-              <PillTitle>聯絡我｜CONTACT</PillTitle>
-              <!-- ↓↓↓ 以元件呈現聯絡方式（最小改動） ↓↓↓ -->
-              <ContactPills class="mt-2" email="ninaaaaa1327@gmail.com" tel="0905862327" />
+              <h2 class="font-bold text-title mb-2">聯絡方式｜CONTACT ME</h2>
+              <ContactPills email="ninaaaaa1327@gmail.com" tel="0905862327" />
             </div>
-
-            <!-- 小裝飾：右下角星星 -->
-            <svg
-              class="absolute -right-3 -bottom-5 w-10 h-10 text-[#F3A0AD]"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                d="M12 2l1.9 5.6 5.8.2-4.6 3.4 1.7 5.6-4.8-3.3-4.8 3.3 1.7-5.6L4.3 7.8l5.8-.2L12 2z"
-              />
-            </svg>
           </div>
         </div>
 
