@@ -1,4 +1,3 @@
-<!-- 預設只看到英文 HOME、RESUME、PROJECTS 滑鼠移上去才會淡入顯示對應的中文 -->
 <template>
   <header
     class="w-full sticky top-0 z-50 h-16 bg-header border-t border-b border-black px-6 flex justify-between items-center"
