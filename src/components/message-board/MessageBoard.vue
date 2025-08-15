@@ -5,7 +5,7 @@ MessageList 透過 props 接收 messages 渲染列表
  -->
 
 <template>
-  <section class="mt-12 animate__animated animate__fadeIn animate__fast animate__delay-4s">
+  <section class="mt-12 animate__animated animate__fadeIn animate__fast animate__delay-2s">
     <h2 class="text-2xl font-bold mb-4">💬 留言給 Nina</h2>
     <!-- 留言表單 -->
     <MessageForm @submit-message="addMessage" />

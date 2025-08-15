@@ -1,5 +1,7 @@
 <template>
-  <section class="relative min-h-[78vh] overflow-hidden">
+  <section
+    class="relative min-h-[78vh] overflow-hidden animate__animated animate__fadeIn animate__fast"
+  >
     <!-- 背景：柔和漸層 + 網格點（手機隱藏，提效能） -->
     <div class="absolute inset-0 -z-10" aria-hidden="true">
       <div
@@ -131,12 +133,8 @@
           <!-- 轉職動機 -->
           <div class="mt-4">
             <div
-              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/20 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/40 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
             >
-              <span
-                class="inline-block w-2 h-2 rounded-full bg-btnborder"
-                aria-hidden="true"
-              ></span>
               轉職動機
             </div>
             <p class="mt-3 text-text leading-relaxed">
@@ -150,40 +148,27 @@
           <!-- 職涯目標 -->
           <div class="mt-6">
             <div
-              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/20 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/40 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
             >
-              <span
-                class="inline-block w-2 h-2 rounded-full bg-btnborder"
-                aria-hidden="true"
-              ></span>
               職涯目標
             </div>
             <ul class="mt-3 space-y-3 text-text">
               <li class="flex items-start gap-3">
-                <span
-                  class="mt-1 inline-block w-2 h-2 rounded-full bg-btn"
-                  aria-hidden="true"
-                ></span>
+                <span class="bullet-dot" aria-hidden="true"></span>
                 <p>
                   <span class="font-semibold">希望職稱：</span>
                   前端工程師（Vue / React）
                 </p>
               </li>
               <li class="flex items-start gap-3">
-                <span
-                  class="mt-1 inline-block w-2 h-2 rounded-full bg-btn"
-                  aria-hidden="true"
-                ></span>
+                <span class="bullet-dot" aria-hidden="true"></span>
                 <p>
                   <span class="font-semibold">技術成長：</span>
                   深化組件化與可維護架構，持續優化效能與可及性（a11y）
                 </p>
               </li>
               <li class="flex items-start gap-3">
-                <span
-                  class="mt-1 inline-block w-2 h-2 rounded-full bg-btn"
-                  aria-hidden="true"
-                ></span>
+                <span class="bullet-dot" aria-hidden="true"></span>
                 <p>
                   <span class="font-semibold">協作目標：</span>
                   與設計、後端密切合作，能獨立完成模組並主動提出改進
@@ -195,50 +180,37 @@
           <!-- 技術亮點 -->
           <div class="mt-6">
             <div
-              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/20 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-btnHover/40 text-sm focus-within:ring-2 focus-within:ring-btnborder focus-within:ring-offset-2 focus-within:ring-offset-white"
             >
-              <span
-                class="inline-block w-2 h-2 rounded-full bg-btnborder"
-                aria-hidden="true"
-              ></span>
               技術亮點
             </div>
             <ul class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 text-text">
               <li class="flex items-start gap-3">
-                <span
-                  class="mt-1 inline-block w-2 h-2 rounded-full bg-btn"
-                  aria-hidden="true"
-                ></span>
+                <span class="bullet-dot" aria-hidden="true"></span>
                 <p>
                   <span class="font-semibold">Vue 3 / Composition API：</span>
                   元件化結構、維護性高
                 </p>
               </li>
               <li class="flex items-start gap-3">
-                <span
-                  class="mt-1 inline-block w-2 h-2 rounded-full bg-btn"
-                  aria-hidden="true"
-                ></span>
+                <span class="bullet-dot" aria-hidden="true"></span>
+
                 <p>
                   <span class="font-semibold">Tailwind CSS：</span>
                   設計系統化、快速完成 RWD
                 </p>
               </li>
               <li class="flex items-start gap-3">
-                <span
-                  class="mt-1 inline-block w-2 h-2 rounded-full bg-btn"
-                  aria-hidden="true"
-                ></span>
+                <span class="bullet-dot" aria-hidden="true"></span>
+
                 <p>
                   <span class="font-semibold">互動體驗：</span>
                   Animate.css 進場、細節過場
                 </p>
               </li>
               <li class="flex items-start gap-3">
-                <span
-                  class="mt-1 inline-block w-2 h-2 rounded-full bg-btn"
-                  aria-hidden="true"
-                ></span>
+                <span class="bullet-dot" aria-hidden="true"></span>
+
                 <p>
                   <span class="font-semibold">協作工具：</span>
                   Git / GitHub、Figma
@@ -282,3 +254,12 @@
   import MessageBoard from '../components/message-board/MessageBoard.vue'
   import PillTitle from '../components/PillTitle.vue'
 </script>
+
+<style scoped>
+  .bullet-dot {
+    @apply mt-1 inline-block w-2 h-2 rounded-full bg-btn shrink-0;
+  }
+  /* 
+   w-2 h-2 = 8px 圓點；mt-1 稍微下移對齊文字基線；
+   shrink-0 防止換行時被壓扁。 */
+</style>
